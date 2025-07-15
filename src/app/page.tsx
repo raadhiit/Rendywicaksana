@@ -18,6 +18,9 @@ export default function Home() {
         <div className="items-center text-white">
           <h1 className="text-center text-white">Hi, this is test update on GIT</h1>
         </div>
+        <div className="items-center">
+          <h1 className="text-center text-yellow-500">This will be last testing update using github and vercel!</h1>
+        </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
