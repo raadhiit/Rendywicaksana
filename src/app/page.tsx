@@ -15,6 +15,9 @@ export default function Home() {
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <h1 className="text-center text-white">Hi, My name is Rendy Wicaksana</h1>
         </div>
+        <div className="items-center text-white">
+          <h1 className="text-center text-white">Hi, this is test update on GIT</h1>
+        </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
