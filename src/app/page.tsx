@@ -423,7 +423,7 @@ const RendyPortfolio = () => {
           </h2>
 
           <p className="text-xl text-gray-300 mb-12 leading-relaxed">
-            Ready to collaborate on your next story? I'm available for freelance projects,
+            Ready to collaborate on your next story? I am available for freelance projects,
             consulting, and media partnerships.
           </p>
 
