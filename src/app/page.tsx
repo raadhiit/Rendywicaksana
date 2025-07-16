@@ -418,7 +418,7 @@ const RendyPortfolio = () => {
       {/* Contact Section */}
       <section id="contact" className="relative z-10 py-20 px-6 bg-gradient-to-br from-gray-800 to-gray-900 text-white">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
             Let&apos;s Create Something Amazing
           </h2>
 
