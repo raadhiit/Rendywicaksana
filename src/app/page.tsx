@@ -280,7 +280,7 @@ const RendyPortfolio = () => {
                 to complex international stories.
               </p>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                My documentary Transnational with VICE earned prestigious Peabody and GLAAD awards in 2021,
+                My documentary &quot;Transnational&quot; with VICE earned prestigious Peabody and GLAAD awards in 2021,
                 reflecting my commitment to authentic storytelling that drives social impact.
               </p>
 
@@ -418,9 +418,10 @@ const RendyPortfolio = () => {
       {/* Contact Section */}
       <section id="contact" className="relative z-10 py-20 px-6 bg-gradient-to-br from-gray-800 to-gray-900 text-white">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Let's Create Something Amazing
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
+            Let&apos;s Create Something Amazing
           </h2>
+
           <p className="text-xl text-gray-300 mb-12 leading-relaxed">
             Ready to collaborate on your next story? I'm available for freelance projects,
             consulting, and media partnerships.
