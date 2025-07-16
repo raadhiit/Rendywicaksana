@@ -254,9 +254,6 @@ const RendyPortfolio = () => {
                         alt="Rendy Wicaksana"
                         className="w-full h-full object-cover"
                       />
-                    {/* <div className="w-32 h-32 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-                      <span className="text-4xl font-bold text-white">RW</span>
-                    </div> */}
                     <h3 className="text-2xl font-bold text-gray-800 mb-2">Rendy Wicaksana</h3>
                     <p className="text-blue-400 font-medium">Multimedia Journalist</p>
                   </div>
@@ -278,12 +275,12 @@ const RendyPortfolio = () => {
                 spans from documentary production to breaking news coverage.
               </p>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                As a former New York correspondent for Voice of America, I've covered major global events
+                As a former New York correspondent for Voice of America, I have covered major global events
                 including the UN General Assembly and US Presidential Elections, bringing nuanced perspectives
                 to complex international stories.
               </p>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                My documentary "Transnational" with VICE earned prestigious Peabody and GLAAD awards in 2021,
+                My documentary Transnational with VICE earned prestigious Peabody and GLAAD awards in 2021,
                 reflecting my commitment to authentic storytelling that drives social impact.
               </p>
 
