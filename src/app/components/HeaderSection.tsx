@@ -2,8 +2,13 @@ import { useState } from 'react';
 import { Download, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+type Stat = {
+    number: string;
+    label: string;
+};
 
-export default function HeaderSection({ stats, isVisible }: { stats: any[]; isVisible: boolean }) {
+
+export default function HeaderSection({ stats, isVisible }: { stats: Stat[]; isVisible: boolean }) {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
 
     return (
