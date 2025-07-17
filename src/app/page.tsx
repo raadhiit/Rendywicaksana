@@ -5,6 +5,8 @@ import { ChevronDown, Award, Globe, Camera, Mic, Play, ExternalLink, Mail, Linke
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import HeaderSection from './components/HeaderSection';
+import Image from "next/image";
+
 
 const RendyPortfolio = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -27,34 +29,34 @@ const RendyPortfolio = () => {
   const portfolioProjects = [
     {
       id: 1,
-      title: "Transnational Documentary",
+      title: "Pesantren Tuli: 'Bagaimana Mau Taat Kalau Gak Pernah Dengar?'",
       category: "documentary",
-      year: "2021",
-      platform: "VICE",
-      description: "Award-winning documentary that earned Peabody and GLAAD awards, exploring transnational stories with innovative multimedia approach.",
-      image: "/api/placeholder/600/400",
-      awards: ["Peabody Award", "GLAAD Award"],
-      tags: ["Documentary", "LGBTQ+", "International"]
+      year: "2022",
+      platform: "VOA Indonesia",
+      description: "Di agama yang ibadahnya sarat dengan praktik lisan, bagaimana teman Tuli beribadah di agama Islam?",
+      awards: [],
+      tags: ["Documentary", "religion"],
+      youtubeUrl: "https://www.youtube.com/watch?v=YdxiQLmk8pI"
     },
     {
       id: 2,
-      title: "US Presidential Election Coverage",
-      category: "news",
-      year: "2024",
-      platform: "Voice of America",
-      description: "Comprehensive coverage of the 2024 US Presidential Election from New York, providing in-depth analysis for international audiences.",
-      image: "/api/placeholder/600/400",
-      tags: ["Politics", "Election", "Breaking News"]
+      title: "Waria Tenang Beribadah di Pesantren Al-Fatah",
+      category: "documentary",
+      year: "2021",
+      platform: "VOA Indonesia",
+      description: "",
+      tags: ["documentary", "religion", "Transgender"],
+      youtubeUrl: "https://www.youtube.com/watch?v=UZXx8HFxZIg"
     },
     {
       id: 3,
-      title: "United Nations General Assembly",
-      category: "international",
+      title: "Guru SD Transpuan di Flores Timur: Jangan Panggil Saya 'Pak'",
+      category: "documentary",
       year: "2023",
-      platform: "Voice of America",
-      description: "Live reporting and analysis from the UN General Assembly, covering global diplomatic developments and international relations.",
-      image: "/api/placeholder/600/400",
-      tags: ["Diplomacy", "International", "UN"]
+      platform: "VOA Indonesia",
+      description: "Sebenarnya ada penolakan dalam diri saya. Saya sudah berdandan untuk pergi bekerja, namun masih dipanggil ‘pak’",
+      tags: ["docuemntary", "transgender"],
+      youtubeUrl: "https://www.youtube.com/watch?v=BH5IysQYddE"
     },
     {
       id: 4,
@@ -63,7 +65,7 @@ const RendyPortfolio = () => {
       year: "2022",
       platform: "Various",
       description: "Feature series highlighting Indonesian communities across the United States, showcasing cultural preservation and integration.",
-      image: "/api/placeholder/600/400",
+      image: "/img/2.png",
       tags: ["Culture", "Diaspora", "Community"]
     },
     {
@@ -73,8 +75,8 @@ const RendyPortfolio = () => {
       year: "2023",
       platform: "Multiple Outlets",
       description: "Investigative series on climate change impacts in Southeast Asia, combining data journalism with human stories.",
-      image: "/api/placeholder/600/400",
-      tags: ["Environment", "Data Journalism", "Investigation"]
+      tags: ["Environment", "Data Journalism", "Investigation"],
+      youtubeUrl: ""
     },
     {
       id: 6,
@@ -83,8 +85,8 @@ const RendyPortfolio = () => {
       year: "2022",
       platform: "Digital Platforms",
       description: "Multimedia coverage of emerging technologies and startup ecosystems across Asian markets.",
-      image: "/api/placeholder/600/400",
-      tags: ["Technology", "Innovation", "Asia"]
+      tags: ["Technology", "Innovation", "Asia"],
+      youtubeUrl:""
     }
   ];
 
@@ -132,6 +134,30 @@ const RendyPortfolio = () => {
     }
   ];
 
+  function getYoutubeId(url: string): string | null {
+    const match = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
+    return match ? match[1] : null;
+  }
+
+  // function getYoutubeThumbnailUrl(youtubeUrl?: string): string {
+  //   const id = youtubeUrl ? getYoutubeId(youtubeUrl) : null;
+  //   return id
+  //     ? `https://img.youtube.com/vi/${id}/hqdefault.jpg`
+  //     : "/api/placeholder/600/400";
+  // }
+
+  function getProjectThumbnail(project: { youtubeUrl?: string; image?: string }): string {
+    const id = project.youtubeUrl ? getYoutubeId(project.youtubeUrl) : null;
+
+    if (id) {
+      return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+    }
+
+    // fallback ke image jika tersedia, kalau tidak pakai placeholder
+    return project.image ?? "/api/placeholder/600/400";
+  }
+
+
   return (
     <div className="min-h-screen bg-gray-100 text-gray-800 overflow-hidden">
       {/* Animated Background */}
@@ -164,11 +190,6 @@ const RendyPortfolio = () => {
         >
         <div className="text-center max-w-5xl mx-auto">
           <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <div className="mb-6">
-              <span className="bg-blue-400 text-white px-4 py-2 rounded-full text-sm font-medium">
-                Award-Winning Journalist
-              </span>
-            </div>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-blue-400 bg-clip-text text-transparent">
               Rendy Wicaksana
             </h1>
@@ -332,11 +353,22 @@ const RendyPortfolio = () => {
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {filteredProjects.map((project, index) => (
               <div key={project.id} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                
                 <div className="relative overflow-hidden">
-                  <div className="w-full h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                  {/* <div className="w-full h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
                     <Camera className="w-12 h-12 text-white" />
-                  </div>
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300" />
+                  </div> */}
+                  <Image
+                    src={getProjectThumbnail(project)}
+                    alt={project.title}
+                    width={600}
+                    height={200}
+                    // className="w-full h-48 object-cover"
+                    className="w-full h-48 object-contain bg-gray-100"
+                    unoptimized
+                  />
+
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300" />
                   <div className="absolute top-4 left-4">
                     <span className="bg-blue-400 text-white px-3 py-1 rounded-full text-sm font-medium">
                       {project.year}
@@ -350,15 +382,24 @@ const RendyPortfolio = () => {
                 </div>
 
                 <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-lg md:text-xl font-bold text-gray-800 group-hover:text-blue-400 transition-colors">
+                  {/* <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-lg md:text-base font-bold text-gray-800 group-hover:text-blue-400 transition-colors">
                       {project.title}
-                    </h3>
+                    </h4>
                     <span className="text-xs md:text-sm text-gray-500 font-medium">
                       {project.platform}
                     </span>
+                  </div> */}
 
+                  <div className="mb-3">
+                    <h4 className="text-lg md:text-base font-bold text-gray-800 group-hover:text-blue-400 transition-colors mb-3">
+                      {project.title}
+                    </h4>
+                    <span className="text-xs md:text-sm text-gray-500 font-medium mt-1 block">
+                      {project.platform}
+                    </span>
                   </div>
+
 
                   <p className="text-sm md:text-base text-gray-600 mb-4 leading-relaxed">
                     {project.description}
