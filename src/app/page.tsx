@@ -60,49 +60,84 @@ const RendyPortfolio = () => {
     },
     {
       id: 4,
-      title: "Indonesian Diaspora Stories",
-      category: "feature",
-      year: "2022",
-      platform: "Various",
-      description: "Feature series highlighting Indonesian communities across the United States, showcasing cultural preservation and integration.",
-      image: "/img/2.png",
-      tags: ["Culture", "Diaspora", "Community"]
+      title: "Pasien Covid Bisa Sembuh?",
+      category: "News",
+      year: "2021",
+      platform: "Voice of Indonesia",
+      description: "Treatments toward COVID-19 infection keeps developing along with the more knowledge to understand behavior of this virus is gained. WHO on May has actually announced a new procedure basically saying that patients will no longer required 2x consecutive negative swab test result in order to be considered recovered from the disease. ",
+      image: "/img/2(1).png",
+      tags: ["Covid-19"]
     },
     {
       id: 5,
-      title: "Climate Change Impact Reports",
+      title: "Indonesians Are Trying to Make Crypto Halal",
       category: "environmental",
-      year: "2023",
-      platform: "Multiple Outlets",
-      description: "Investigative series on climate change impacts in Southeast Asia, combining data journalism with human stories.",
-      tags: ["Environment", "Data Journalism", "Investigation"],
-      youtubeUrl: ""
+      year: "2022",
+      platform: "Vice News",
+      description: "Cryptocurrency is booming in Indonesia, with millions of Indonesians looking to crypto investments as a way of making quick money after two years of pandemic-fueled economic decline. But in the world’s most populous Muslim country, religious authorities have spoken out against the risks of cryptocurrency, and declared crypto transactions against the rules of Islam.",
+      tags: ["covid-19", "Cryptocurrency"],
+      youtubeUrl: "https://www.youtube.com/watch?v=Z5oXzNUz7G0"
     },
     {
       id: 6,
-      title: "Tech Innovation in Asia",
+      title: "Only 37% of Indonesian are willing to take COVID-19 vaccine",
       category: "technology",
+      year: "2021",
+      platform: "VOA Indonesia",
+      description: "According to the latest survey by SMRC (16-19 Dec 2020). I asked around, why not? Here is what they say, responded by expert and Indonesian vaccine spokesperson.",
+      tags: ["Vaccine", "Covid-19"],
+      image: "/img/3.png",
+    },
+    {
+      id: 7,
+      title: "Diaspora Indonesia Tinggal di Kawasan ‘Zombie’ Narkoba di Philadelphia",
+      category: ["News", "Zombie"],
+      year: "2023",
+      platform: "VOA Indonesia",
+      description: "Di balik fenomena ‘zombie’ narkoba di kawasan Kensington Avenue di kota Philadelphia, Amerika Serikat, ternyata ada keluarga diaspora Indonesia yang bermukim di sana selama 15 tahun.",
+      tags: ["narcotics"],
+      youtubeUrl: "https://www.youtube.com/watch?v=7gut7W-AUjI",
+    },
+    {
+      id: 8,
+      title: "Indonesian Diver Volunteers, Treating Airplane Crash Victims as Human and With Respect",
+      category: ["News", "Zombie"],
+      year: "2023",
+      platform: "VOA Indonesia",
+      description: "Volunteering in your community is not a new idea. But for one Indonesian scuba diver his volunteer work is dangerous and sometimes terrifying. ",
+      tags: ["Diver"],
+      youtubeUrl: "https://www.youtube.com/watch?v=U8SZhhfABQo",
+    },
+    {
+      id: 9,
+      title: "Inside Indonesia's Only Quran School for Trans Muslims | Transnational",
+      category: ["Trandgender", "News"],
       year: "2022",
-      platform: "Digital Platforms",
-      description: "Multimedia coverage of emerging technologies and startup ecosystems across Asian markets.",
-      tags: ["Technology", "Innovation", "Asia"],
-      youtubeUrl:""
-    }
+      platform: "VICE News",
+      description: "In this episode of Transnational, Rana Thamrin embarks on a spiritual journey to Indonesia’s only Islamic school in Yogyakarta where transgender Muslim women are finding ways to reconcile their faith and trans identity.",
+      tags: ["Trandgender", "News"],
+      youtubeUrl: "https://www.youtube.com/watch?v=BN_yIxQABOA",
+    },
   ];
 
-  const filterCategories = [
-    { id: 'all', name: 'All Projects' },
-    { id: 'documentary', name: 'Documentary' },
-    { id: 'news', name: 'News' },
-    { id: 'international', name: 'International' },
-    { id: 'feature', name: 'Feature' },
-    { id: 'environmental', name: 'Environmental' },
-    { id: 'technology', name: 'Technology' }
-  ];
+  // const filterCategories = [
+  //   { id: 'all', name: 'All Projects' },
+  //   { id: 'documentary', name: 'Documentary' },
+  //   { id: 'news', name: 'News' },
+  //   { id: 'international', name: 'International' },
+  //   { id: 'feature', name: 'Feature' },
+  //   { id: 'environmental', name: 'Environmental' },
+  //   { id: 'technology', name: 'Technology' }
+  // ];
+
+  // const filteredProjects = activeFilter === 'all'
+  //   ? portfolioProjects
+  //   : portfolioProjects.filter(project => project.category === activeFilter);
 
   const filteredProjects = activeFilter === 'all'
     ? portfolioProjects
-    : portfolioProjects.filter(project => project.category === activeFilter);
+    : portfolioProjects.filter((project) => project.year === activeFilter);
+
 
   const stats = [
     { number: "11+", label: "Years Experience" },
@@ -317,10 +352,32 @@ const RendyPortfolio = () => {
         </div>
       </section>
 
+      {/* Award Section */}
+      <section
+        id="awards"
+        className="relative z-10 py-20 px-6"
+        data-aos="fade-up"
+        data-aos-delay="100"
+        data-aos-anchor-placement="top-bottom"
+      >
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 
+              data-aos="fade-up"
+              data-aos-delay="100"
+              data-aos-anchor-placement="top-bottom"
+              className="text-4xl md:text-5xl font-bold mb-6 text-gray-800"
+            >
+              Awards
+            </h2>
+          </div>
+        </div>
+      </section>
+
       {/* Portfolio Section */}
       <section 
           id="portfolio" 
-          className="relative z-10 py-20 px-6"
+          className="relative z-10 py-20 px-6 bg-white/50"
           data-aos="fade-up"
           data-aos-delay="100"
           data-aos-anchor-placement="top-bottom"
@@ -350,88 +407,90 @@ const RendyPortfolio = () => {
           </div> */}
 
           {/* Portfolio Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {filteredProjects.map((project, index) => (
-              <div key={project.id} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                
-                <div className="relative overflow-hidden">
-                  {/* <div className="w-full h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-                    <Camera className="w-12 h-12 text-white" />
-                  </div> */}
-                  <Image
-                    src={getProjectThumbnail(project)}
-                    alt={project.title}
-                    width={600}
-                    height={200}
-                    // className="w-full h-48 object-cover"
-                    className="w-full h-48 object-contain bg-gray-100"
-                    unoptimized
-                  />
-
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300" />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-blue-400 text-white px-3 py-1 rounded-full text-sm font-medium">
-                      {project.year}
-                    </span>
-                  </div>
-                  <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button className="bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100 transition-colors">
-                      <ExternalLink className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-
-                <div className="p-6">
-                  {/* <div className="flex items-center justify-between mb-3">
-                    <h4 className="text-lg md:text-base font-bold text-gray-800 group-hover:text-blue-400 transition-colors">
-                      {project.title}
-                    </h4>
-                    <span className="text-xs md:text-sm text-gray-500 font-medium">
-                      {project.platform}
-                    </span>
-                  </div> */}
-
-                  <div className="mb-3">
-                    <h4 className="text-lg md:text-base font-bold text-gray-800 group-hover:text-blue-400 transition-colors mb-3">
-                      {project.title}
-                    </h4>
-                    <span className="text-xs md:text-sm text-gray-500 font-medium mt-1 block">
-                      {project.platform}
-                    </span>
+          <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
+            {[...filteredProjects]
+              .sort((a, b) => Number(b.year) - Number(a.year)) // urut dari terbaru ke lama
+              .map((project) => (
+                <div
+                  key={project.id}
+                  className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                >
+                  <div className="relative overflow-hidden">
+                    <Image
+                      src={getProjectThumbnail(project)}
+                      alt={project.title}
+                      width={600}
+                      height={200}
+                      className="w-full h-48 object-cover"
+                      unoptimized
+                    />
+                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300" />
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-blue-400 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        {project.year}
+                      </span>
+                    </div>
+                    <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {project.youtubeUrl && (
+                        <a
+                          href={project.youtubeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100 transition-colors shadow-md"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      )}
+                    </div>
                   </div>
 
+                  <div className="p-6">
+                    <div className="mb-3">
+                      <h4 className="text-lg md:text-base font-bold text-gray-800 group-hover:text-blue-400 transition-colors mb-3">
+                        {project.title}
+                      </h4>
+                      <span className="text-xs md:text-sm text-gray-500 font-medium mt-1 block">
+                        {project.platform}
+                      </span>
+                    </div>
 
-                  <p className="text-sm md:text-base text-gray-600 mb-4 leading-relaxed">
-                    {project.description}
-                  </p>
+                    <p className="text-sm md:text-base text-gray-600 mb-4 leading-relaxed">
+                      {project.description}
+                    </p>
 
-                  {project.awards && (
-                    <div className="mb-4">
-                      {project.awards.map((award, i) => (
-                        <span key={i} className="inline-flex items-center bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-[10px] md:text-xs font-medium mr-2 mb-1">
-                          <Award className="w-3 h-3 mr-1" />
-                          {award}
+                    {project.awards && (
+                      <div className="mb-4">
+                        {project.awards.map((award, i) => (
+                          <span
+                            key={i}
+                            className="inline-flex items-center bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-[10px] md:text-xs font-medium mr-2 mb-1"
+                          >
+                            <Award className="w-3 h-3 mr-1" />
+                            {award}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag, i) => (
+                        <span
+                          key={i}
+                          className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-[10px] md:text-xs"
+                        >
+                          {tag}
                         </span>
                       ))}
                     </div>
-                  )}
-
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, i) => (
-                      <span key={i} className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-[10px] md:text-xs">
-                        {tag}
-                      </span>
-                    ))}
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </section>
 
       {/* Expertise Section */}
-      <section id="expertise" className="relative z-10 py-20 px-6 bg-white/50">
+      <section id="expertise" className="relative z-10 py-20 px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">My Expertise</h2>
