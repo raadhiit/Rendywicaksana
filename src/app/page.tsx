@@ -6,6 +6,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import HeaderSection from './components/HeaderSection';
 import Image from "next/image";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay } from 'swiper/modules';
 
 
 const RendyPortfolio = () => {
@@ -120,19 +122,30 @@ const RendyPortfolio = () => {
     },
   ];
 
-  // const filterCategories = [
-  //   { id: 'all', name: 'All Projects' },
-  //   { id: 'documentary', name: 'Documentary' },
-  //   { id: 'news', name: 'News' },
-  //   { id: 'international', name: 'International' },
-  //   { id: 'feature', name: 'Feature' },
-  //   { id: 'environmental', name: 'Environmental' },
-  //   { id: 'technology', name: 'Technology' }
-  // ];
+  const image = [
+    '/img/5.webp',
+    '/img/6.webp',
+    '/img/7.webp',
+    '/img/9.webp',
+    '/img/11.webp',
+  ];
 
-  // const filteredProjects = activeFilter === 'all'
-  //   ? portfolioProjects
-  //   : portfolioProjects.filter(project => project.category === activeFilter);
+  const awards = [
+    {
+      id: 1,
+      title: 'GLAAD Award 2022',
+      desc: 'On December 8, 2021, the latest episode of Vice’s new “Transnational” series was released, titled “Inside Indonesia’s Only Quran School for Trans Muslims.” learns about Al-Fatah School, the only Islamic school in the country accepting of transgender Muslims.',
+      image: '/img/13.webp',
+      link: 'https://glaad.org/why-you-should-know-about-vice-series-transnational-covering-transgender-communities-around/'
+    },
+    {
+      id: 2,
+      title: 'Peabody Award 2021',
+      desc: 'The wordplay at work in Vice’s series Transnational is, perhaps, all too obvious… spotlight various trans communities around the world: from the ballroom scene in Detroit to a government‑sponsored safe haven in Mexico City, with stops in the UK and Indonesia',
+      image: '/img/12.webp',
+      link: 'https://peabodyawards.com/award-profile/transnational/'
+    },
+  ];
 
   const filteredProjects = activeFilter === 'all'
     ? portfolioProjects
@@ -173,13 +186,6 @@ const RendyPortfolio = () => {
     const match = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
     return match ? match[1] : null;
   }
-
-  // function getYoutubeThumbnailUrl(youtubeUrl?: string): string {
-  //   const id = youtubeUrl ? getYoutubeId(youtubeUrl) : null;
-  //   return id
-  //     ? `https://img.youtube.com/vi/${id}/hqdefault.jpg`
-  //     : "/api/placeholder/600/400";
-  // }
 
   function getProjectThumbnail(project: { youtubeUrl?: string; image?: string }): string {
     const id = project.youtubeUrl ? getYoutubeId(project.youtubeUrl) : null;
@@ -229,12 +235,12 @@ const RendyPortfolio = () => {
               Rendy Wicaksana
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-4 leading-relaxed">
-              Multimedia Journalist & Communication Specialist
+              Video Journalist | Multimedia Journalist | Producer
             </p>
-            <p className="text-lg text-gray-500 mb-8 max-w-3xl mx-auto">
+            {/* <p className="text-lg text-gray-500 mb-8 max-w-3xl mx-auto">
               Crafting compelling visual stories for global audiences with 11 years of experience in
               international journalism, documentary production, and cross-cultural communication.
-            </p>
+            </p> */}
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <button className="bg-blue-400 text-white px-8 py-4 rounded-full hover:bg-blue-500 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
@@ -269,6 +275,7 @@ const RendyPortfolio = () => {
       </section>
 
       {/* About Section */}
+      {/* Sesuaikan lagi content dari about section */}
       <section
           id="about"
           className="relative z-10 py-20 px-6 bg-white/50"
@@ -352,9 +359,9 @@ const RendyPortfolio = () => {
         </div>
       </section>
 
-      {/* Award Section */}
+      {/* Gallery Section */}
       <section
-        id="awards"
+        id="Gallery"
         className="relative z-10 py-20 px-6"
         data-aos="fade-up"
         data-aos-delay="100"
@@ -366,10 +373,114 @@ const RendyPortfolio = () => {
               data-aos="fade-up"
               data-aos-delay="100"
               data-aos-anchor-placement="top-bottom"
-              className="text-4xl md:text-5xl font-bold mb-6 text-gray-800"
+              className="text-4xl md:text-5xl font-bold mb-8 pb-8 text-gray-800"
             >
+              Gallery
+            </h2>
+              <Swiper
+                modules={[Pagination, Autoplay]}
+                spaceBetween={20}
+                slidesPerView={1}
+                pagination={{ clickable: true }}
+                loop={true}
+                autoplay={{
+                  delay: 2500,      // 3 detik antar slide
+                  disableOnInteraction: false, // tetap autoplay meskipun user interaksi
+                }}
+                className="w-full max-w-4xl mx-auto rounded-xl"
+              >
+                {image.map((src, index) => (
+                  <SwiperSlide key={index}>
+                    <div className="relative w-full h-72 sm:h-96 rounded-xl overflow-hidden">
+                      <Image
+                        src={src}
+                        alt={`Gallery ${index + 1}`}
+                        layout="fill"
+                        objectFit="contain"
+                        className="rounded-4xl"
+                      />
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+          </div>
+        </div>
+      </section>
+
+      {/* Award Section */}
+      <section
+        id="award"
+        className="relative z-10 py-20 px-6 bg-white/50"
+        data-aos="fade-up"
+        data-aos-delay="100"
+        data-aos-anchor-placement="top-bottom"
+      >
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 pb-8 text-gray-800">
               Awards
             </h2>
+
+            <Swiper
+              modules={[Pagination, Autoplay]}
+              spaceBetween={30}
+              slidesPerView={1}
+              pagination={{ clickable: true }}
+              loop={true}
+              autoplay={{
+                delay: 3500,
+                disableOnInteraction: false,
+              }}
+              breakpoints={{
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
+              className="px-4"
+            >
+              {awards.map((award, idx) => (
+                <SwiperSlide key={idx}>
+                  <div className="bg-white rounded-xl p-4 h-full flex flex-col transform hover:-translate-y-2 transition duration-300">
+                    <div className="relative w-full h-48 rounded-lg overflow-hidden mb-4">
+                      <Image
+                        src={award.image}
+                        alt={award.title}
+                        fill
+                        className="object-cover rounded-lg transition duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2 text-gray-800">
+                      {award.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm flex-1 text-left leading-relaxed">
+                      {award.desc}
+                    </p>
+                    <a
+                      href={award.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 w-fit inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold text-sm px-5 py-2 rounded-full shadow-md hover:shadow-lg hover:from-blue-600 hover:to-indigo-700 transition-all duration-300"
+                    >
+                      <span>Read more</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </a>
+
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
       </section>
@@ -377,7 +488,7 @@ const RendyPortfolio = () => {
       {/* Portfolio Section */}
       <section 
           id="portfolio" 
-          className="relative z-10 py-20 px-6 bg-white/50"
+          className="relative z-10 py-20 px-6"
           data-aos="fade-up"
           data-aos-delay="100"
           data-aos-anchor-placement="top-bottom"
@@ -389,22 +500,6 @@ const RendyPortfolio = () => {
               A collection of impactful stories spanning documentaries, breaking news, and feature reporting
             </p>
           </div>
-
-          {/* Filter Buttons */}
-          {/* <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {filterCategories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveFilter(category.id)}
-                className={`px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-105 ${activeFilter === category.id
-                  ? 'bg-blue-400 text-white shadow-lg'
-                  : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
-                  }`}
-              >
-                {category.name}
-              </button>
-            ))}
-          </div> */}
 
           {/* Portfolio Grid */}
           <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
@@ -490,7 +585,7 @@ const RendyPortfolio = () => {
       </section>
 
       {/* Expertise Section */}
-      <section id="expertise" className="relative z-10 py-20 px-6">
+      <section id="expertise" className="relative z-10 py-20 px-6 bg-white/50">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">My Expertise</h2>
