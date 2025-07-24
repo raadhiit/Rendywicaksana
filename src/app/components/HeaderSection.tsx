@@ -18,11 +18,22 @@ export default function HeaderSection({ stats, isVisible }: { stats: Stat[]; isV
 
                 {/* Desktop Menu */}
                 <div className="hidden md:flex space-x-8 items-center">
-                    <a href="#home" className="hover:text-blue-400 transition">Home</a>
-                    <a href="#about" className="hover:text-blue-400 transition">About</a>
-                    <a href="#portfolio" className="hover:text-blue-400 transition">Portfolio</a>
-                    <a href="#expertise" className="hover:text-blue-400 transition">Expertise</a>
-                    <a href="#contact" className="hover:text-blue-400 transition">Contact</a>
+                    {[
+                        { href: '#home', label: 'Home' },
+                        { href: '#about', label: 'About' },
+                        { href: '#portfolio', label: 'Portfolio' },
+                        { href: '#expertise', label: 'Expertise' },
+                        { href: '#contact', label: 'Contact' },
+                    ].map((item) => (
+                        <a
+                        key={item.href}
+                        href={item.href}
+                        className="relative text-black hover:text-blue-400 transition after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-blue-400 hover:after:w-full after:transition-all after:duration-300"
+                        >
+                        {item.label}
+                        </a>
+                    ))}
+
                     <button
                         type="button"
                         className="bg-blue-400 text-white px-6 py-2 rounded-full hover:bg-blue-500 transition"

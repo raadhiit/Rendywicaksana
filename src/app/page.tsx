@@ -8,6 +8,7 @@ import HeaderSection from './components/HeaderSection';
 import Image from "next/image";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
+import Carousel from './components/carousel';
 
 
 const RendyPortfolio = () => {
@@ -144,6 +145,13 @@ const RendyPortfolio = () => {
       desc: 'The wordplay at work in Vice’s series Transnational is, perhaps, all too obvious… spotlight various trans communities around the world: from the ballroom scene in Detroit to a government‑sponsored safe haven in Mexico City, with stops in the UK and Indonesia',
       image: '/img/12.webp',
       link: 'https://peabodyawards.com/award-profile/transnational/'
+    },
+    {
+      id: 3,
+      title: 'Abang None Wakil II Jakarta 2012',
+      desc: 'The wordplay at work in Vice’s series Transnational is, perhaps, all too obvious… spotlight various trans communities around the world: from the ballroom scene in Detroit to a government‑sponsored safe haven in Mexico City, with stops in the UK and Indonesia',
+      image: '/img/14.webp',
+      link: 'https://www.tribunnews.com/images/editorial/view/108831/abang-none-2012'
     },
   ];
 
@@ -373,7 +381,7 @@ const RendyPortfolio = () => {
               data-aos="fade-up"
               data-aos-delay="100"
               data-aos-anchor-placement="top-bottom"
-              className="text-4xl md:text-5xl font-bold mb-8 pb-8 text-gray-800"
+              className="text-4xl md:text-5xl font-bold mb-8 text-gray-800"
             >
               Gallery
             </h2>
@@ -395,14 +403,16 @@ const RendyPortfolio = () => {
                       <Image
                         src={src}
                         alt={`Gallery ${index + 1}`}
-                        layout="fill"
-                        objectFit="contain"
-                        className="rounded-4xl"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                        className="rounded-4xl object-contain"
                       />
                     </div>
                   </SwiperSlide>
                 ))}
               </Swiper>
+
+              {/* <Carousel /> */}
           </div>
         </div>
       </section>
@@ -417,70 +427,45 @@ const RendyPortfolio = () => {
       >
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 pb-8 text-gray-800">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
               Awards
             </h2>
 
-            <Swiper
-              modules={[Pagination, Autoplay]}
-              spaceBetween={30}
-              slidesPerView={1}
-              pagination={{ clickable: true }}
-              loop={true}
-              autoplay={{
-                delay: 3500,
-                disableOnInteraction: false,
-              }}
-              breakpoints={{
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-              }}
-              className="px-4"
-            >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
               {awards.map((award, idx) => (
-                <SwiperSlide key={idx}>
-                  <div className="bg-white rounded-xl p-4 h-full flex flex-col transform hover:-translate-y-2 transition duration-300">
-                    <div className="relative w-full h-48 rounded-lg overflow-hidden mb-4">
-                      <Image
-                        src={award.image}
-                        alt={award.title}
-                        fill
-                        className="object-cover rounded-lg transition duration-300 group-hover:scale-105"
-                      />
+                <div
+                  key={idx}
+                  className="bg-white rounded-xl p-4 h-full flex flex-col transform hover:-translate-y-2 transition duration-300"
+                >
+                  <div className="group relative w-full h-48 rounded-lg overflow-hidden mb-4">
+                    <Image
+                      src={award.image}
+                      alt={award.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                      className="object-cover rounded-lg transition duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300" />
+                    <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {award.link && (
+                        <a
+                          href={award.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100 transition-colors shadow-md"
+                        >
+                          <ExternalLink className="w-4 h-4 text-gray-800" />
+                        </a>
+                      )}
                     </div>
-                    <h3 className="text-xl font-semibold mb-2 text-gray-800">
-                      {award.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm flex-1 text-left leading-relaxed">
-                      {award.desc}
-                    </p>
-                    <a
-                      href={award.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 w-fit inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold text-sm px-5 py-2 rounded-full shadow-md hover:shadow-lg hover:from-blue-600 hover:to-indigo-700 transition-all duration-300"
-                    >
-                      <span>Read more</span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </a>
-
                   </div>
-                </SwiperSlide>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-800">
+                    {award.title}
+                  </h3>
+                </div>
               ))}
-            </Swiper>
+            </div>
+
           </div>
         </div>
       </section>
@@ -585,7 +570,13 @@ const RendyPortfolio = () => {
       </section>
 
       {/* Expertise Section */}
-      <section id="expertise" className="relative z-10 py-20 px-6 bg-white/50">
+      <section 
+          id="expertise" 
+          data-aos="fade-up"
+          data-aos-delay="100"
+          data-aos-anchor-placement="top-bottom"
+          className="relative z-10 py-20 px-6 bg-white/50"
+        >
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">My Expertise</h2>
@@ -628,16 +619,26 @@ const RendyPortfolio = () => {
               <h3 className="text-lg font-semibold mb-2">Email</h3>
               <p className="text-gray-300">rendy@example.com</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300">
-              <Linkedin className="w-8 h-8 text-blue-400 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">LinkedIn</h3>
-              <p className="text-gray-300">linkedin.com/in/rendy</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300">
-              <Twitter className="w-8 h-8 text-blue-400 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Twitter</h3>
-              <p className="text-gray-300">@rendywicaksana</p>
-            </div>
+            <a 
+              className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300"
+              href='https://www.linkedin.com/in/rendy-wicaksana-295a4432/'
+              target='_blank'
+              rel='noopener noreferrer'
+              >
+                <Linkedin className="w-8 h-8 text-blue-400 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold mb-2">LinkedIn</h3>
+                <p className="text-gray-300">linkedin.com/in/rendy</p>
+            </a>
+            <a 
+                href='https://x.com/reendywise?t=yNFtyiJm2hMnvyDUar1OMg&s=08'
+                target='_blank'
+                rel='noopener noreferrer'
+                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300"
+              >
+                <Twitter className="w-8 h-8 text-blue-400 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Twitter</h3>
+                <p className="text-gray-300">@rendywicaksana</p>
+            </a>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
@@ -662,10 +663,10 @@ const RendyPortfolio = () => {
               <p className="text-sm">Multimedia Journalist & Communication Specialist</p>
             </div>
             <div className="flex space-x-6">
-              <a href="#" className="hover:text-blue-400 transition-colors duration-300">
+              <a href="https://x.com/reendywise?t=yNFtyiJm2hMnvyDUar1OMg&s=08" className="hover:text-blue-400 transition-colors duration-300">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="hover:text-blue-400 transition-colors duration-300">
+              <a href="https://www.linkedin.com/in/rendy-wicaksana-295a4432/" className="hover:text-blue-400 transition-colors duration-300">
                 <Linkedin className="w-5 h-5" />
               </a>
               <a href="#" className="hover:text-blue-400 transition-colors duration-300">
