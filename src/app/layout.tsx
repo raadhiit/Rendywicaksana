@@ -33,11 +33,6 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/logo-1.ico" />
-        <title>Rendy Wicaksana</title>
-        <meta
-          name="description"
-          content="Multimedia Journalist / Communication Specialist"
-        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

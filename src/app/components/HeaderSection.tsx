@@ -13,7 +13,7 @@ export default function HeaderSection({ stats, isVisible }: { stats: Stat[]; isV
 
     return (
         <header className="relative z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 sticky top-0">
-            <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
+            <nav className="container mx-auto px-8 py-4 flex justify-between items-center">
                 <div className="text-2xl font-bold text-gray-800">Rendy Wicaksana</div>
 
                 {/* Desktop Menu */}
@@ -33,14 +33,6 @@ export default function HeaderSection({ stats, isVisible }: { stats: Stat[]; isV
                         {item.label}
                         </a>
                     ))}
-
-                    <button
-                        type="button"
-                        className="bg-blue-400 text-white px-6 py-2 rounded-full hover:bg-blue-500 transition"
-                    >
-                        <Download className="w-4 h-4 inline mr-2" />
-                        Resume
-                    </button>
                 </div>
 
                 {/* Hamburger Menu Button */}
@@ -80,13 +72,6 @@ export default function HeaderSection({ stats, isVisible }: { stats: Stat[]; isV
                         <a href="#portfolio" onClick={() => setShowMobileMenu(false)} className="hover:text-blue-400">Portfolio</a>
                         <a href="#expertise" onClick={() => setShowMobileMenu(false)} className="hover:text-blue-400">Expertise</a>
                         <a href="#contact" onClick={() => setShowMobileMenu(false)} className="hover:text-blue-400">Contact</a>
-                        <button
-                            type="button"
-                            className="bg-blue-400 text-white px-6 py-2 rounded-full hover:bg-blue-500 transition"
-                        >
-                            <Download className="w-4 h-4 inline mr-2" />
-                            Resume
-                        </button>
                     </motion.div>
                 )}
             </AnimatePresence>
