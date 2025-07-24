@@ -435,7 +435,7 @@ const RendyPortfolio = () => {
               {awards.map((award, idx) => (
                 <div
                   key={idx}
-                  className="bg-white rounded-xl p-4 h-full flex flex-col transform hover:-translate-y-2 transition duration-300"
+                  className="bg-white rounded-xl p-4 h-full flex flex-col transform hover:-translate-y-2 transition duration-300 shadow-md"
                 >
                   <div className="group relative w-full h-48 rounded-lg overflow-hidden mb-4">
                     <Image
