@@ -133,23 +133,23 @@ const RendyPortfolio = () => {
 
 
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-800 overflow-hidden">
+    <div className="min-h-screen bg-[#212121] text-white overflow-hidden">
       {/* Animated Background */}
-      <div className="fixed inset-0 pointer-events-none">
+      <div className="fixed inset-0 pointer-events-none z-0">
         <div
-          className="absolute w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"
+          className="absolute w-96 h-96 bg-gray-700 rounded-full mix-blend-lighten filter blur-[120px] opacity-10 animate-pulse"
           style={{
             left: mousePosition.x * 0.015 + 'px',
             top: mousePosition.y * 0.015 + 'px',
-            transform: 'translate(-50%, -50%)'
+            transform: 'translate(-50%, -50%)',
           }}
         />
         <div
-          className="absolute w-80 h-80 bg-gray-400 rounded-full mix-blend-multiply filter blur-xl opacity-15 animate-pulse"
+          className="absolute w-80 h-80 bg-gray-500 rounded-full mix-blend-lighten filter blur-[100px] opacity-10 animate-pulse"
           style={{
             left: mousePosition.x * -0.01 + 800 + 'px',
             top: mousePosition.y * -0.01 + 600 + 'px',
-            transform: 'translate(-50%, -50%)'
+            transform: 'translate(-50%, -50%)',
           }}
         />
       </div>
@@ -160,7 +160,7 @@ const RendyPortfolio = () => {
       {/* Hero Section */}
       <section 
         id="hero" 
-        className="w-full bg-white min-h-screen pb-12"
+        className="w-full bg-white/85 min-h-screen pb-12"
         >
         <div className="relative w-full">
           <Image
@@ -177,10 +177,10 @@ const RendyPortfolio = () => {
 
         <div className="text-center max-w-5xl px-6 mx-auto z-10">
           <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-blue-400 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-black bg-clip-text text-transparent">
               Rendy Wicaksana
             </h1>
-            <p className="text-xl md:text-2xl text-gray-500 mb-4 leading-relaxed">
+            <p className="text-xl md:text-2xl text-black/60 mb-4 leading-relaxed">
               Video Journalist | Multimedia Journalist | Producer
             </p>
             <div 
@@ -188,8 +188,8 @@ const RendyPortfolio = () => {
             >
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-800 to-blue-400 bg-clip-text text-transparent mb-2">{stat.number}</div>
-                  <div className="text-sm text-gray-500">{stat.label}</div>
+                  <div className="text-3xl md:text-4xl font-bold bg-black/70 bg-clip-text text-transparent mb-2">{stat.number}</div>
+                  <div className="text-sm text-black/60">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -226,32 +226,12 @@ const RendyPortfolio = () => {
       {/* Sesuaikan lagi content dari about section */}
       <section
           id="about"
-          className="relative z-10 py-10 px-6 bg-white/50"
+          className="relative z-10 py-10 px-6"
           data-aos="fade-up"
           data-aos-delay="100"
           data-aos-anchor-placement="top-bottom"
         >
         <div className="container mx-auto max-w-6xl">
-          {/* <div className="text-center mb-12">
-            <h2 
-              data-aos="fade-up"
-              data-aos-delay="100"
-              data-aos-anchor-placement="top-bottom"
-              // className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-blue-400 bg-clip-text text-transparent"
-              className="text-4xl md:text-5xl font-bold mb-6 text-gray-800"
-            >
-              About Me
-            </h2>
-            <p
-              className="text-xl text-gray-600 max-w-3xl mx-auto"
-              data-aos="fade-up"
-              data-aos-delay="100"
-              data-aos-anchor-placement="top-bottom"
-            >
-              A passionate storyteller dedicated to bridging cultures through impactful journalism
-            </p>
-          </div> */}
-
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div 
               data-aos="fade-up"
@@ -283,17 +263,17 @@ const RendyPortfolio = () => {
               {/* <h3 className="text-3xl font-bold mb-6 text-gray-800">
                 Storytelling That Transcends Borders
               </h3> */}
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+              <p className="text-lg text-white/80 mb-6 leading-relaxed">
                 With 11 years of experience in multimedia journalism, I specialize in creating compelling
                 visual narratives that resonate with both Indonesian and international audiences. My work
                 spans from documentary production to breaking news coverage.
               </p>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+              <p className="text-lg text-white/80 mb-6 leading-relaxed">
                 As a former New York correspondent for Voice of America, I have covered major global events
                 including the UN General Assembly and US Presidential Elections, bringing nuanced perspectives
                 to complex international stories.
               </p>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+              <p className="text-lg text-white/80 mb-8 leading-relaxed">
                 My documentary &quot;Transnational&quot; with VICE earned prestigious Peabody and GLAAD awards in 2021,
                 reflecting my commitment to authentic storytelling that drives social impact.
               </p>
@@ -302,12 +282,12 @@ const RendyPortfolio = () => {
                 <img
                   src="/img/peabody.webp"
                   alt="Peabody Award"
-                  className="w-full max-w-[200px] h-auto object-contain mx-auto"
+                  className="w-full max-w-[200px] h-auto object-contain mx-auto filter invert"
                 />
                 <img
                   src="/img/glaad.webp"
                   alt="GLAAD Award"
-                  className="w-full max-w-[200px] h-auto object-contain mx-auto"
+                  className="w-full max-w-[200px] h-auto object-contain mx-auto filter invert"
                 />
               </div>
 
@@ -326,8 +306,8 @@ const RendyPortfolio = () => {
         >
         <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">My Portfolio</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white/90">My Portfolio</h2>
+            <p className="text-xl text-white/70 max-w-3xl mx-auto mb-8">
               A collection of impactful stories spanning documentaries, breaking news, and feature reporting
             </p>
           </div>
@@ -347,7 +327,7 @@ const RendyPortfolio = () => {
                   }}
                   className={`px-4 py-2 rounded-full transition-all duration-300 font-medium ${
                     isActive
-                      ? "bg-gradient-to-r from-gray-500 to-blue-400 text-white shadow-md"
+                      ? "bg-gray-500 text-white shadow-md"
                       : "bg-gray-200 text-gray-800 hover:bg-gray-300"
                   }`}
                 >
@@ -373,7 +353,7 @@ const RendyPortfolio = () => {
                   {paginatedProjects.map((project) => (
                     <div
                       key={project.id}
-                      className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                      className="group bg-white/85 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
                     >
                       <div className="relative overflow-hidden">
                         <Image
@@ -384,9 +364,9 @@ const RendyPortfolio = () => {
                           className="w-full h-48 object-cover"
                           unoptimized
                         />
-                        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300" />
+                        <div className="absolute inset-0 bg-black/10 group-hover:bg-white/10 transition-all duration-300" />
                         <div className="absolute top-4 left-4">
-                          <span className="bg-blue-400 text-white px-3 py-1 rounded-full text-sm font-medium">
+                          <span className="bg-white/80 text-black px-3 py-1 rounded-full text-sm font-medium">
                             {project.year}
                           </span>
                         </div>
@@ -406,7 +386,7 @@ const RendyPortfolio = () => {
 
                       <div className="p-6">
                         <div className="mb-3">
-                          <h4 className="text-lg md:text-base font-bold text-gray-800 group-hover:text-blue-400 transition-colors mb-3">
+                          <h4 className="text-lg md:text-base font-bold text-gray-800 group-hover:transition-colors mb-3">
                             {project.title}
                           </h4>
                           <span className="text-xs md:text-sm text-gray-500 font-medium mt-1 block">
@@ -443,7 +423,7 @@ const RendyPortfolio = () => {
                       onClick={() => setCurrentPage(i + 1)}
                       className={`px-4 py-2 rounded-full border text-sm transition-all ${
                         currentPage === i + 1
-                          ? "bg-blue-500 text-white border-blue-500"
+                          ? "bg-gray-500 text-white border-gray-500"
                           : "bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
                       }`}
                     >
@@ -462,11 +442,11 @@ const RendyPortfolio = () => {
           data-aos="fade-up"
           data-aos-delay="100"
           data-aos-anchor-placement="top-bottom"
-          className="relative z-10 py-20 px-6 bg-white/50"
+          className="relative z-10 py-20 px-6 bg-white/85"
         >
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">My Expertise</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-black">My Expertise</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Core competencies that drive impactful journalism and storytelling
             </p>
@@ -475,8 +455,8 @@ const RendyPortfolio = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {expertise.map((item, index) => (
               <div key={index} className="group text-center">
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                  <div className="flex items-center justify-center w-16 h-16 bg-blue-400 rounded-full mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
+                <div className="bg-white/80 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                  <div className="flex items-center justify-center w-16 h-16 bg-gray-600 rounded-full mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
                     <item.icon className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-800 mb-4">{item.title}</h3>
@@ -489,7 +469,7 @@ const RendyPortfolio = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="relative z-10 py-20 px-6 bg-gradient-to-br from-gray-800 to-gray-900 text-white">
+      <section id="contact" className="relative z-10 py-20 px-6 text-white">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
             Let&apos;s Create Something Amazing
@@ -507,7 +487,7 @@ const RendyPortfolio = () => {
                 rel="noopener noreferrer"
               >
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 cursor-pointer">
-                <Mail className="w-8 h-8 text-blue-400 mx-auto mb-4" />
+                <Mail className="w-8 h-8 text-white mx-auto mb-4" />
                 <h3 className="text-lg font-semibold mb-2">Email</h3>
                 <p className="text-gray-300">rendy.wise@gmail.com</p>
               </div>
@@ -519,7 +499,7 @@ const RendyPortfolio = () => {
               target='_blank'
               rel='noopener noreferrer'
               >
-                <Linkedin className="w-8 h-8 text-blue-400 mx-auto mb-4" />
+                <Linkedin className="w-8 h-8 text-white mx-auto mb-4" />
                 <h3 className="text-lg font-semibold mb-2">LinkedIn</h3>
                 <p className="text-gray-300">linkedin.com/in/rendy</p>
             </a>
@@ -529,25 +509,25 @@ const RendyPortfolio = () => {
                 rel='noopener noreferrer'
                 className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300"
               >
-                <Twitter className="w-8 h-8 text-blue-400 mx-auto mb-4" />
+                <Twitter className="w-8 h-8 text-white mx-auto mb-4" />
                 <h3 className="text-lg font-semibold mb-2">Twitter</h3>
                 <p className="text-gray-300">@reendywise</p>
             </a>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center w-full px-4">
             <a
               href="https://wa.me/6285697124495" // Ganti dengan nomor kamu (tanpa tanda +)
               target="_blank"
               rel="noopener noreferrer"
             >
-              <button className="bg-blue-400 text-white px-8 py-4 rounded-full hover:bg-blue-500 transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+              <button className="bg-white text-black px-8 py-4 w-full rounded-full hover:text-black hover:transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
                 <MessageCircle className="w-5 h-5 mr-2" />
                 Send WhatsApp
               </button>
             </a>
 
-            <button className="border border-gray-400 text-gray-300 px-8 py-4 rounded-full hover:bg-gray-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+            <button className="border border-gray-400 text-gray-300 px-8 py-4 rounded-full hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
               <Download className="w-5 h-5 mr-2" />
               Download Resume
             </button>
