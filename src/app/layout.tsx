@@ -33,6 +33,19 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/logo-1.ico" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter&family=Playfair+Display&display=swap" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap"
+          rel="stylesheet"
+        />
+      <link 
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet" 
+      />
+
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

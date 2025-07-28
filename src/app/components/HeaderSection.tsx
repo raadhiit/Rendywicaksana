@@ -14,10 +14,10 @@ export default function HeaderSection({ stats, isVisible }: { stats: Stat[]; isV
     return (
     <header className="relative z-50 bg-black/20 backdrop-blur-md border-b border-gray-700 sticky top-0">
         <nav className="container mx-auto px-8 py-4 flex justify-between items-center">
-            <div className="text-2xl font-bold text-gray-100">Rendy Wicaksana</div>
+            <div className="text-2xl font-bold text-gray-100 font-['playfair-_Display']">Rendy Wicaksana</div>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex space-x-8 items-center">
+            <div className="hidden md:flex flex-1 justify-center space-x-8 pr-10 items-center">
             {[
                 { href: '#home', label: 'Home' },
                 { href: '#about', label: 'About' },
@@ -55,7 +55,7 @@ export default function HeaderSection({ stats, isVisible }: { stats: Stat[]; isV
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                className="fixed top-0 left-0 w-full bg-gray-900/95 backdrop-blur-sm shadow-md px-6 py-6 flex flex-col space-y-4 z-[99] md:hidden text-gray-100"
+                className="fixed top-0 left-0 w-full bg-black/85 backdrop-blur-sm shadow-md px-6 py-6 flex flex-col space-y-4 z-[99] md:hidden text-gray-100"
             >
                 <button
                 onClick={() => setShowMobileMenu(false)}

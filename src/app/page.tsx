@@ -137,7 +137,7 @@ const RendyPortfolio = () => {
       {/* Animated Background */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div
-          className="absolute w-96 h-96 bg-gray-700 rounded-full mix-blend-lighten filter blur-[120px] opacity-10 animate-pulse"
+          className="absolute w-96 h-96 bg-white rounded-full mix-blend-lighten filter blur-[120px] opacity-30 animate-pulse"
           style={{
             left: mousePosition.x * 0.015 + 'px',
             top: mousePosition.y * 0.015 + 'px',
@@ -145,7 +145,7 @@ const RendyPortfolio = () => {
           }}
         />
         <div
-          className="absolute w-80 h-80 bg-gray-500 rounded-full mix-blend-lighten filter blur-[100px] opacity-10 animate-pulse"
+          className="absolute w-80 h-80 bg-gray-500 rounded-full mix-blend-lighten filter blur-[100px] opacity-30 animate-pulse"
           style={{
             left: mousePosition.x * -0.01 + 800 + 'px',
             top: mousePosition.y * -0.01 + 600 + 'px',
@@ -160,7 +160,7 @@ const RendyPortfolio = () => {
       {/* Hero Section */}
       <section 
         id="hero" 
-        className="w-full bg-white/85 min-h-screen pb-12"
+        className="w-full bg-gradient-to-b from-white/90 via-gray-100 to-gray-200 min-h-screen pb-12"
         >
         <div className="relative w-full">
           <Image
@@ -177,10 +177,10 @@ const RendyPortfolio = () => {
 
         <div className="text-center max-w-5xl px-6 mx-auto z-10">
           <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-black bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-black bg-clip-text text-transparent font-['Playfair_Display']">
               Rendy Wicaksana
             </h1>
-            <p className="text-xl md:text-2xl text-black/60 mb-4 leading-relaxed">
+            <p className="text-base md:text-2xl text-black/60 mb-4 leading-relaxed font-['Source_Sans_3']">
               Video Journalist | Multimedia Journalist | Producer
             </p>
             <div 
@@ -263,7 +263,7 @@ const RendyPortfolio = () => {
               {/* <h3 className="text-3xl font-bold mb-6 text-gray-800">
                 Storytelling That Transcends Borders
               </h3> */}
-              <p className="text-lg text-white/80 mb-6 leading-relaxed">
+              <p className="text-lg text-white/80 mb-6 leading-relaxed font-['Merriweather']">
                 With 11 years of experience in multimedia journalism, I specialize in creating compelling
                 visual narratives that resonate with both Indonesian and international audiences. My work
                 spans from documentary production to breaking news coverage.
@@ -327,7 +327,7 @@ const RendyPortfolio = () => {
                   }}
                   className={`px-4 py-2 rounded-full transition-all duration-300 font-medium ${
                     isActive
-                      ? "bg-gray-500 text-white shadow-md"
+                      ? "bg-gradient-to-r from-gray-600 via-gray-500 to-gray-700 text-white shadow-md"
                       : "bg-gray-200 text-gray-800 hover:bg-gray-300"
                   }`}
                 >
@@ -423,7 +423,7 @@ const RendyPortfolio = () => {
                       onClick={() => setCurrentPage(i + 1)}
                       className={`px-4 py-2 rounded-full border text-sm transition-all ${
                         currentPage === i + 1
-                          ? "bg-gray-500 text-white border-gray-500"
+                          ? "bg-gradient-to-r from-gray-600 via-gray-500 to-gray-700text-white border-gray-500"
                           : "bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
                       }`}
                     >
@@ -536,14 +536,14 @@ const RendyPortfolio = () => {
       </section>
 
       {/* Footer */}
-      <footer className="relative z-10 bg-gray-900 text-gray-400 py-8 px-6">
+      <footer className="relative z-10 bg-white/85 text-gray-400 py-8 px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0">
+            <div className="mb-4 text-black md:mb-0">
               <p>&copy; 2024 Rendy Wicaksana. All rights reserved.</p>
               <p className="text-sm">Multimedia Journalist & Communication Specialist</p>
             </div>
-            <div className="flex space-x-6">
+            {/* <div className="flex space-x-6 text-black">
               <a href="https://x.com/reendywise?t=yNFtyiJm2hMnvyDUar1OMg&s=08" className="hover:text-blue-400 transition-colors duration-300">
                 <Twitter className="w-5 h-5" />
               </a>
@@ -553,7 +553,7 @@ const RendyPortfolio = () => {
               <a href="#" className="hover:text-blue-400 transition-colors duration-300">
                 <Mail className="w-5 h-5" />
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </footer>
