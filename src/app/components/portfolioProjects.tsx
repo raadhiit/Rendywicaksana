@@ -38,6 +38,7 @@
       image: "/img/2(1).png",
       tags: ["Covid-19"],
       language: "english",
+      videoUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:6723813398838165504/'
     },
     {
       id: 5,
@@ -58,6 +59,7 @@
       tags: ["Vaccine", "Covid-19"],
       language: "english",
       image: "/img/3.png",
+      videoUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:6751693570811535360/'
     },
     {
       id: 7,

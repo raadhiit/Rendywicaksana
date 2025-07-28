@@ -17,11 +17,13 @@ const RendyPortfolio = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [activeFilter, setActiveFilter] = useState('english');
   const scrollRef = useRef<HTMLDivElement>(null);
+  const isFirstRender = useRef(true);
   
 
   useEffect(() => {
     setIsVisible(true);
-    AOS.init({ duration: 900, once: false });
+    AOS.init({ duration: 900, once: false, startEvent: 'DOMContentLoaded' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
@@ -124,7 +126,17 @@ const RendyPortfolio = () => {
     setCurrentPage(1);
   }, [activeFilter]);
 
+  // useEffect(() => {
+  //   if (scrollRef.current) {
+  //     scrollRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+  //   }
+  // }, [currentPage]);
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return; // jangan scroll saat pertama render
+    }
+
     if (scrollRef.current) {
       scrollRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
@@ -258,7 +270,7 @@ const RendyPortfolio = () => {
               data-aos="fade-up"
               data-aos-delay="100"
               data-aos-anchor-placement="top-bottom"
-              className='flex flex-col justify-center mt-0 md:mt-5'
+              className="flex flex-col justify-center px-6 md:px-16 max-w-[680px] mx-auto mt-4 text-white text-base leading-relaxed"
             >
               {/* <h3 className="text-3xl font-bold mb-6 text-gray-800">
                 Storytelling That Transcends Borders
