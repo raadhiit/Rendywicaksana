@@ -1,21 +1,23 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { ChevronDown, Award, Globe, Camera, Mic, Play, ExternalLink, Mail, Linkedin, Twitter, BookOpen, Video, Newspaper, Users, Eye, Download } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { ChevronDown, Globe, Camera, Mic, ExternalLink, Mail, Linkedin, Twitter,  Video, Download, MessageCircle } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import HeaderSection from './components/HeaderSection';
 import Image from "next/image";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay } from 'swiper/modules';
-import Carousel from './components/carousel';
+import { portfolioProjects } from './components/portfolioProjects';
+import { motion, AnimatePresence } from "framer-motion";
 
 
 const RendyPortfolio = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [currentProject, setCurrentProject] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeFilter, setActiveFilter] = useState('english');
+  const scrollRef = useRef<HTMLDivElement>(null);
+  
 
   useEffect(() => {
     setIsVisible(true);
@@ -29,136 +31,32 @@ const RendyPortfolio = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const portfolioProjects = [
-    {
-      id: 1,
-      title: "Pesantren Tuli: 'Bagaimana Mau Taat Kalau Gak Pernah Dengar?'",
-      category: "documentary",
-      year: "2022",
-      platform: "VOA Indonesia",
-      description: "Di agama yang ibadahnya sarat dengan praktik lisan, bagaimana teman Tuli beribadah di agama Islam?",
-      awards: [],
-      tags: ["Documentary", "religion"],
-      youtubeUrl: "https://www.youtube.com/watch?v=YdxiQLmk8pI"
-    },
-    {
-      id: 2,
-      title: "Waria Tenang Beribadah di Pesantren Al-Fatah",
-      category: "documentary",
-      year: "2021",
-      platform: "VOA Indonesia",
-      description: "",
-      tags: ["documentary", "religion", "Transgender"],
-      youtubeUrl: "https://www.youtube.com/watch?v=UZXx8HFxZIg"
-    },
-    {
-      id: 3,
-      title: "Guru SD Transpuan di Flores Timur: Jangan Panggil Saya 'Pak'",
-      category: "documentary",
-      year: "2023",
-      platform: "VOA Indonesia",
-      description: "Sebenarnya ada penolakan dalam diri saya. Saya sudah berdandan untuk pergi bekerja, namun masih dipanggil ‘pak’",
-      tags: ["docuemntary", "transgender"],
-      youtubeUrl: "https://www.youtube.com/watch?v=BH5IysQYddE"
-    },
-    {
-      id: 4,
-      title: "Pasien Covid Bisa Sembuh?",
-      category: "News",
-      year: "2021",
-      platform: "Voice of Indonesia",
-      description: "Treatments toward COVID-19 infection keeps developing along with the more knowledge to understand behavior of this virus is gained. WHO on May has actually announced a new procedure basically saying that patients will no longer required 2x consecutive negative swab test result in order to be considered recovered from the disease. ",
-      image: "/img/2(1).png",
-      tags: ["Covid-19"]
-    },
-    {
-      id: 5,
-      title: "Indonesians Are Trying to Make Crypto Halal",
-      category: "environmental",
-      year: "2022",
-      platform: "Vice News",
-      description: "Cryptocurrency is booming in Indonesia, with millions of Indonesians looking to crypto investments as a way of making quick money after two years of pandemic-fueled economic decline. But in the world’s most populous Muslim country, religious authorities have spoken out against the risks of cryptocurrency, and declared crypto transactions against the rules of Islam.",
-      tags: ["covid-19", "Cryptocurrency"],
-      youtubeUrl: "https://www.youtube.com/watch?v=Z5oXzNUz7G0"
-    },
-    {
-      id: 6,
-      title: "Only 37% of Indonesian are willing to take COVID-19 vaccine",
-      category: "technology",
-      year: "2021",
-      platform: "VOA Indonesia",
-      description: "According to the latest survey by SMRC (16-19 Dec 2020). I asked around, why not? Here is what they say, responded by expert and Indonesian vaccine spokesperson.",
-      tags: ["Vaccine", "Covid-19"],
-      image: "/img/3.png",
-    },
-    {
-      id: 7,
-      title: "Diaspora Indonesia Tinggal di Kawasan ‘Zombie’ Narkoba di Philadelphia",
-      category: ["News", "Zombie"],
-      year: "2023",
-      platform: "VOA Indonesia",
-      description: "Di balik fenomena ‘zombie’ narkoba di kawasan Kensington Avenue di kota Philadelphia, Amerika Serikat, ternyata ada keluarga diaspora Indonesia yang bermukim di sana selama 15 tahun.",
-      tags: ["narcotics"],
-      youtubeUrl: "https://www.youtube.com/watch?v=7gut7W-AUjI",
-    },
-    {
-      id: 8,
-      title: "Indonesian Diver Volunteers, Treating Airplane Crash Victims as Human and With Respect",
-      category: ["News", "Zombie"],
-      year: "2023",
-      platform: "VOA Indonesia",
-      description: "Volunteering in your community is not a new idea. But for one Indonesian scuba diver his volunteer work is dangerous and sometimes terrifying. ",
-      tags: ["Diver"],
-      youtubeUrl: "https://www.youtube.com/watch?v=U8SZhhfABQo",
-    },
-    {
-      id: 9,
-      title: "Inside Indonesia's Only Quran School for Trans Muslims | Transnational",
-      category: ["Trandgender", "News"],
-      year: "2022",
-      platform: "VICE News",
-      description: "In this episode of Transnational, Rana Thamrin embarks on a spiritual journey to Indonesia’s only Islamic school in Yogyakarta where transgender Muslim women are finding ways to reconcile their faith and trans identity.",
-      tags: ["Trandgender", "News"],
-      youtubeUrl: "https://www.youtube.com/watch?v=BN_yIxQABOA",
-    },
-  ];
 
   const image = [
-    '/img/5.webp',
-    '/img/6.webp',
+    '/img/24.webp',
+    '/img/16.webp',
+    '/img/25.webp',
+    '/img/19.webp',
+    '/img/23.webp',
+    '/img/20.webp',
+    '/img/22.webp',
+    '/img/17.webp',
+    '/img/18.webp',
     '/img/7.webp',
-    '/img/9.webp',
-    '/img/11.webp',
+    '/img/6.webp',
   ];
 
-  const awards = [
-    {
-      id: 1,
-      title: 'GLAAD Award 2022',
-      desc: 'On December 8, 2021, the latest episode of Vice’s new “Transnational” series was released, titled “Inside Indonesia’s Only Quran School for Trans Muslims.” learns about Al-Fatah School, the only Islamic school in the country accepting of transgender Muslims.',
-      image: '/img/13.webp',
-      link: 'https://glaad.org/why-you-should-know-about-vice-series-transnational-covering-transgender-communities-around/'
-    },
-    {
-      id: 2,
-      title: 'Peabody Award 2021',
-      desc: 'The wordplay at work in Vice’s series Transnational is, perhaps, all too obvious… spotlight various trans communities around the world: from the ballroom scene in Detroit to a government‑sponsored safe haven in Mexico City, with stops in the UK and Indonesia',
-      image: '/img/12.webp',
-      link: 'https://peabodyawards.com/award-profile/transnational/'
-    },
-    {
-      id: 3,
-      title: 'Abang None Wakil II Jakarta 2012',
-      desc: 'The wordplay at work in Vice’s series Transnational is, perhaps, all too obvious… spotlight various trans communities around the world: from the ballroom scene in Detroit to a government‑sponsored safe haven in Mexico City, with stops in the UK and Indonesia',
-      image: '/img/14.webp',
-      link: 'https://www.tribunnews.com/images/editorial/view/108831/abang-none-2012'
-    },
+  const logos = [
+    { name: "vice", src: "/img/vice.webp" },
+    { name: "scmp", src: "/img/SCMP_new.webp" },
+    { name: "abc", src: "/img/ABC.webp" },
+    { name: "voa", src: "/img/VOA.webp" },
   ];
+
 
   const filteredProjects = activeFilter === 'all'
     ? portfolioProjects
-    : portfolioProjects.filter((project) => project.year === activeFilter);
-
+    : portfolioProjects.filter((project) => project.language === activeFilter);
 
   const stats = [
     { number: "11+", label: "Years Experience" },
@@ -191,20 +89,47 @@ const RendyPortfolio = () => {
   ];
 
   function getYoutubeId(url: string): string | null {
-    const match = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([0-9A-Za-z_-]{11})/);
     return match ? match[1] : null;
   }
 
-  function getProjectThumbnail(project: { youtubeUrl?: string; image?: string }): string {
-    const id = project.youtubeUrl ? getYoutubeId(project.youtubeUrl) : null;
+  function getProjectThumbnail(project: { videoUrl?: string; image?: string }): string {
+    const id = project.videoUrl ? getYoutubeId(project.videoUrl) : null;
 
     if (id) {
       return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
     }
 
-    // fallback ke image jika tersedia, kalau tidak pakai placeholder
     return project.image ?? "/api/placeholder/600/400";
   }
+
+  const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedProjects = filteredProjects
+    .sort((a, b) => {
+      const platformPriority = ["VICE News", "South China Morning Post", "VOA Indonesia"];
+      const getPriority = (platform: string): number => {
+        const index = platformPriority.indexOf(platform);
+        return index === -1 ? platformPriority.length : index;
+      };
+      const priorityA = getPriority(a.platform);
+      const priorityB = getPriority(b.platform);
+      if (priorityA !== priorityB) return priorityA - priorityB;
+      return Number(b.year) - Number(a.year);
+    })
+    .slice(startIndex, endIndex);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeFilter]);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [currentPage]);
+
 
 
   return (
@@ -234,50 +159,65 @@ const RendyPortfolio = () => {
 
       {/* Hero Section */}
       <section 
-          id="home" 
-          className="relative z-10 min-h-screen flex items-center justify-center px-6 pt-12 md:pt-5"
+        id="hero" 
+        className="w-full bg-white min-h-screen pb-12"
         >
-        <div className="text-center max-w-5xl mx-auto">
+        <div className="relative w-full">
+          <Image
+            src="/img/15 (1).webp"
+            alt="hero"
+            width={1920}
+            height={1080}
+            className="w-full h-auto object-cover mb-10"
+            priority
+          />
+
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
+
+        <div className="text-center max-w-5xl px-6 mx-auto z-10">
           <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-blue-400 bg-clip-text text-transparent">
               Rendy Wicaksana
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-4 leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-500 mb-4 leading-relaxed">
               Video Journalist | Multimedia Journalist | Producer
             </p>
-            {/* <p className="text-lg text-gray-500 mb-8 max-w-3xl mx-auto">
-              Crafting compelling visual stories for global audiences with 11 years of experience in
-              international journalism, documentary production, and cross-cultural communication.
-            </p> */}
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <button className="bg-blue-400 text-white px-8 py-4 rounded-full hover:bg-blue-500 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-                <Eye className="w-5 h-5 inline mr-2" />
-                View Portfolio
-              </button>
-              <button className="border-2 border-gray-800 text-gray-800 px-8 py-4 rounded-full hover:bg-gray-800 hover:text-white transition-all duration-300 transform hover:scale-105">
-                <Mail className="w-5 h-5 inline mr-2" />
-                Get In Touch
-              </button>
-            </div>
-
-            {/* Stats */}
             <div 
               className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12"
-              data-aos="fade-up"
-              data-aos-delay="200"
             >
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-blue-400 mb-2">{stat.number}</div>
-                  <div className="text-gray-600 text-sm">{stat.label}</div>
+                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-800 to-blue-400 bg-clip-text text-transparent mb-2">{stat.number}</div>
+                  <div className="text-sm text-gray-500">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
 
+          <div 
+              data-aos="fade-up"
+              data-aos-delay="100"
+              data-aos-anchor-placement="top-bottom"
+              className="grid grid-cols-2 sm:grid-cols-4 gap-4 items-center justify-center mb-8"
+            >
+            {logos.map((logo, idx) => (
+              <div key={idx} className="flex justify-center">
+                <Image
+                  src={logo.src}
+                  alt={`Logo ${idx + 1}`}
+                  width={100}
+                  height={60}
+                  className={`object-contain max-h-12 w-auto ${
+                    logo.name === 'scmp' ? 'scale-125' : ''
+                  }`}
+                />
+              </div>
+            ))}
+          </div>
+
           <div className="animate-bounce">
-            <ChevronDown className="mx-auto w-8 h-8 text-gray-400" />
+            <ChevronDown className="mx-auto w-8 h-8 text-black" />
           </div>
         </div>
       </section>
@@ -286,17 +226,18 @@ const RendyPortfolio = () => {
       {/* Sesuaikan lagi content dari about section */}
       <section
           id="about"
-          className="relative z-10 py-20 px-6 bg-white/50"
+          className="relative z-10 py-10 px-6 bg-white/50"
           data-aos="fade-up"
           data-aos-delay="100"
           data-aos-anchor-placement="top-bottom"
         >
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
+          {/* <div className="text-center mb-12">
             <h2 
               data-aos="fade-up"
               data-aos-delay="100"
               data-aos-anchor-placement="top-bottom"
+              // className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-blue-400 bg-clip-text text-transparent"
               className="text-4xl md:text-5xl font-bold mb-6 text-gray-800"
             >
               About Me
@@ -309,26 +250,27 @@ const RendyPortfolio = () => {
             >
               A passionate storyteller dedicated to bridging cultures through impactful journalism
             </p>
-          </div>
+          </div> */}
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-start">
             <div 
               data-aos="fade-up"
               data-aos-delay="100"
               data-aos-anchor-placement="top-bottom"
             >
-              <div className="bg-gradient-to-br from-blue-400 to-gray-600 rounded-2xl p-1 transform hover:rotate-1 transition-transform duration-300">
-                <div className="bg-white rounded-xl p-8">
-                  <div className="text-center">
+              {/* <div className="bg-gradient-to-br from-blue-400 to-gray-600 rounded-2xl p-1 transform hover:rotate-1 transition-transform duration-300"> */}
+              <div className="rounded-2xl p-6 transform hover:rotate-1 transition-transform duration-300">
+                  {/* MASONRY LAYOUT */}
+                  <div className="columns-1 sm:columns-2 md:columns-3 gap-3 space-y-3">
+                    {image.map((src, idx) => (
                       <img
-                        src="/img/1_rm.webp" // Ganti sesuai path gambarmu
-                        alt="Rendy Wicaksana"
-                        className="w-full h-full object-cover"
+                        key={idx}
+                        src={src}
+                        alt={`Photo ${idx + 1}`}
+                        className="w-full rounded-lg break-inside-avoid"
                       />
-                    <h3 className="text-2xl font-bold text-gray-800 mb-2">Rendy Wicaksana</h3>
-                    <p className="text-blue-400 font-medium">Multimedia Journalist</p>
+                    ))}
                   </div>
-                </div>
               </div>
             </div>
 
@@ -336,10 +278,11 @@ const RendyPortfolio = () => {
               data-aos="fade-up"
               data-aos-delay="100"
               data-aos-anchor-placement="top-bottom"
+              className='flex flex-col justify-center mt-0 md:mt-5'
             >
-              <h3 className="text-3xl font-bold mb-6 text-gray-800">
+              {/* <h3 className="text-3xl font-bold mb-6 text-gray-800">
                 Storytelling That Transcends Borders
-              </h3>
+              </h3> */}
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                 With 11 years of experience in multimedia journalism, I specialize in creating compelling
                 visual narratives that resonate with both Indonesian and international audiences. My work
@@ -355,117 +298,20 @@ const RendyPortfolio = () => {
                 reflecting my commitment to authentic storytelling that drives social impact.
               </p>
 
-              <div className="flex flex-wrap gap-3">
-                {['Multimedia Journalism', 'Documentary Production', 'International Reporting', 'Visual Storytelling'].map((skill, index) => (
-                  <span key={index} className="bg-blue-400 text-white px-4 py-2 rounded-full text-sm font-medium">
-                    {skill}
-                  </span>
-                ))}
+              <div className="grid grid-cols-2 gap-4 items-center mt-4">
+                <img
+                  src="/img/peabody.webp"
+                  alt="Peabody Award"
+                  className="w-full max-w-[200px] h-auto object-contain mx-auto"
+                />
+                <img
+                  src="/img/glaad.webp"
+                  alt="GLAAD Award"
+                  className="w-full max-w-[200px] h-auto object-contain mx-auto"
+                />
               </div>
+
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Gallery Section */}
-      <section
-        id="Gallery"
-        className="relative z-10 py-20 px-6"
-        data-aos="fade-up"
-        data-aos-delay="100"
-        data-aos-anchor-placement="top-bottom"
-      >
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 
-              data-aos="fade-up"
-              data-aos-delay="100"
-              data-aos-anchor-placement="top-bottom"
-              className="text-4xl md:text-5xl font-bold mb-8 text-gray-800"
-            >
-              Gallery
-            </h2>
-              <Swiper
-                modules={[Pagination, Autoplay]}
-                spaceBetween={20}
-                slidesPerView={1}
-                pagination={{ clickable: true }}
-                loop={true}
-                autoplay={{
-                  delay: 2500,      // 3 detik antar slide
-                  disableOnInteraction: false, // tetap autoplay meskipun user interaksi
-                }}
-                className="w-full max-w-4xl mx-auto rounded-xl"
-              >
-                {image.map((src, index) => (
-                  <SwiperSlide key={index}>
-                    <div className="relative w-full h-72 sm:h-96 rounded-xl overflow-hidden">
-                      <Image
-                        src={src}
-                        alt={`Gallery ${index + 1}`}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
-                        className="rounded-4xl object-contain"
-                      />
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-
-              {/* <Carousel /> */}
-          </div>
-        </div>
-      </section>
-
-      {/* Award Section */}
-      <section
-        id="award"
-        className="relative z-10 py-20 px-6 bg-white/50"
-        data-aos="fade-up"
-        data-aos-delay="100"
-        data-aos-anchor-placement="top-bottom"
-      >
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
-              Awards
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
-              {awards.map((award, idx) => (
-                <div
-                  key={idx}
-                  className="bg-white rounded-xl p-4 h-full flex flex-col transform hover:-translate-y-2 transition duration-300 shadow-md"
-                >
-                  <div className="group relative w-full h-48 rounded-lg overflow-hidden mb-4">
-                    <Image
-                      src={award.image}
-                      alt={award.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
-                      className="object-cover rounded-lg transition duration-300 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300" />
-                    <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {award.link && (
-                        <a
-                          href={award.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100 transition-colors shadow-md"
-                        >
-                          <ExternalLink className="w-4 h-4 text-gray-800" />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2 text-gray-800">
-                    {award.title}
-                  </h3>
-                </div>
-              ))}
-            </div>
-
           </div>
         </div>
       </section>
@@ -486,86 +332,127 @@ const RendyPortfolio = () => {
             </p>
           </div>
 
-          {/* Portfolio Grid */}
-          <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
-            {[...filteredProjects]
-              .sort((a, b) => Number(b.year) - Number(a.year)) // urut dari terbaru ke lama
-              .map((project) => (
-                <div
-                  key={project.id}
-                  className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+          <div className="flex justify-center gap-4 mb-8">
+            {["english", "bahasa", "all"].map((lang) => {
+              const isActive = activeFilter === lang;
+
+              return (
+                <motion.button
+                  key={lang}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  onClick={() => {
+                    setActiveFilter(lang);
+                    setCurrentPage(1);
+                  }}
+                  className={`px-4 py-2 rounded-full transition-all duration-300 font-medium ${
+                    isActive
+                      ? "bg-gradient-to-r from-gray-500 to-blue-400 text-white shadow-md"
+                      : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                  }`}
                 >
-                  <div className="relative overflow-hidden">
-                    <Image
-                      src={getProjectThumbnail(project)}
-                      alt={project.title}
-                      width={600}
-                      height={200}
-                      className="w-full h-48 object-cover"
-                      unoptimized
-                    />
-                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300" />
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-blue-400 text-white px-3 py-1 rounded-full text-sm font-medium">
-                        {project.year}
-                      </span>
-                    </div>
-                    <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {project.youtubeUrl && (
-                        <a
-                          href={project.youtubeUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100 transition-colors shadow-md"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="p-6">
-                    <div className="mb-3">
-                      <h4 className="text-lg md:text-base font-bold text-gray-800 group-hover:text-blue-400 transition-colors mb-3">
-                        {project.title}
-                      </h4>
-                      <span className="text-xs md:text-sm text-gray-500 font-medium mt-1 block">
-                        {project.platform}
-                      </span>
-                    </div>
-
-                    <p className="text-sm md:text-base text-gray-600 mb-4 leading-relaxed">
-                      {project.description}
-                    </p>
-
-                    {project.awards && (
-                      <div className="mb-4">
-                        {project.awards.map((award, i) => (
-                          <span
-                            key={i}
-                            className="inline-flex items-center bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-[10px] md:text-xs font-medium mr-2 mb-1"
-                          >
-                            <Award className="w-3 h-3 mr-1" />
-                            {award}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag, i) => (
-                        <span
-                          key={i}
-                          className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-[10px] md:text-xs"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
+                  {lang === "all"
+                    ? "All"
+                    : `In ${lang.charAt(0).toUpperCase() + lang.slice(1)}`}
+                </motion.button>
+              );
+            })}
           </div>
+
+          {/* Portfolio Grid */}
+          <div ref={scrollRef}>
+              <AnimatePresence>
+                <motion.div
+                  key={`${activeFilter}-${currentPage}`}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -30 }}
+                  transition={{ duration: 0.4 }}
+                  className="grid lg:grid-cols-3 gap-6 sm:gap-8"
+                >
+                  {paginatedProjects.map((project) => (
+                    <div
+                      key={project.id}
+                      className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                    >
+                      <div className="relative overflow-hidden">
+                        <Image
+                          src={getProjectThumbnail(project)}
+                          alt={project.title}
+                          width={600}
+                          height={200}
+                          className="w-full h-48 object-cover"
+                          unoptimized
+                        />
+                        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300" />
+                        <div className="absolute top-4 left-4">
+                          <span className="bg-blue-400 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            {project.year}
+                          </span>
+                        </div>
+                        <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          {project.videoUrl && (
+                            <a
+                              href={project.videoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center justify-center bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100 transition-colors shadow-md"
+                            >
+                              <ExternalLink className="w-4 h-4" />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="p-6">
+                        <div className="mb-3">
+                          <h4 className="text-lg md:text-base font-bold text-gray-800 group-hover:text-blue-400 transition-colors mb-3">
+                            {project.title}
+                          </h4>
+                          <span className="text-xs md:text-sm text-gray-500 font-medium mt-1 block">
+                            {project.platform}
+                          </span>
+                        </div>
+
+                        <p className="text-sm md:text-base text-gray-600 mb-4 leading-relaxed">
+                          {project.description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-2">
+                          {project.tags.map((tag, i) => (
+                            <span
+                              key={i}
+                              className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-[10px] md:text-xs"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="flex justify-center mt-10 space-x-2">
+                  {Array.from({ length: totalPages }, (_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentPage(i + 1)}
+                      className={`px-4 py-2 rounded-full border text-sm transition-all ${
+                        currentPage === i + 1
+                          ? "bg-blue-500 text-white border-blue-500"
+                          : "bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
+                      }`}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+                </div>
+              )}
+          </div>              
         </div>
       </section>
 
@@ -614,11 +501,18 @@ const RendyPortfolio = () => {
           </p>
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300">
-              <Mail className="w-8 h-8 text-blue-400 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Email</h3>
-              <p className="text-gray-300">rendy@example.com</p>
-            </div>
+            <a 
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=rendy.wise@gmail.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 cursor-pointer">
+                <Mail className="w-8 h-8 text-blue-400 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Email</h3>
+                <p className="text-gray-300">rendy.wise@gmail.com</p>
+              </div>
+            </a>
+
             <a 
               className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300"
               href='https://www.linkedin.com/in/rendy-wicaksana-295a4432/'
@@ -637,15 +531,22 @@ const RendyPortfolio = () => {
               >
                 <Twitter className="w-8 h-8 text-blue-400 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold mb-2">Twitter</h3>
-                <p className="text-gray-300">@rendywicaksana</p>
+                <p className="text-gray-300">@reendywise</p>
             </a>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <button className="bg-blue-400 text-white px-8 py-4 rounded-full hover:bg-blue-500 transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
-              <Mail className="w-5 h-5 mr-2" />
-              Send Message
-            </button>
+            <a
+              href="https://wa.me/6285697124495" // Ganti dengan nomor kamu (tanpa tanda +)
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="bg-blue-400 text-white px-8 py-4 rounded-full hover:bg-blue-500 transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Send WhatsApp
+              </button>
+            </a>
+
             <button className="border border-gray-400 text-gray-300 px-8 py-4 rounded-full hover:bg-gray-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
               <Download className="w-5 h-5 mr-2" />
               Download Resume
