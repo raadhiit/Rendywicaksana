@@ -37,7 +37,7 @@
       description: "Treatments toward COVID-19 infection keeps developing along with the more knowledge to understand behavior of this virus is gained. WHO on May has actually announced a new procedure basically saying that patients will no longer required 2x consecutive negative swab test result in order to be considered recovered from the disease. ",
       image: "/img/2(1).png",
       tags: ["Covid-19"],
-      language: "english",
+      language: "bahasa",
       videoUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:6723813398838165504/'
     },
     {
@@ -57,7 +57,7 @@
       platform: "VOA Indonesia",
       description: "According to the latest survey by SMRC (16-19 Dec 2020). I asked around, why not? Here is what they say, responded by expert and Indonesian vaccine spokesperson.",
       tags: ["Vaccine", "Covid-19"],
-      language: "english",
+      language: "bahasa",
       image: "/img/3.png",
       videoUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:6751693570811535360/'
     },
@@ -68,7 +68,7 @@
       platform: "VOA Indonesia",
       description: "Behind the drug 'zombie' phenomenon in the Kensington Avenue area of Philadelphia, United States, it turns out there is an Indonesian diaspora family who has lived there for 15 years.",
       tags: ["narcotics"],
-      language: "english",
+      language: "bahasa",
       videoUrl: "https://www.youtube.com/watch?v=7gut7W-AUjI",
     },
     {

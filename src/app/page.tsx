@@ -172,32 +172,28 @@ const RendyPortfolio = () => {
       {/* Hero Section */}
       <section 
         id="hero" 
-        className="w-full bg-gradient-to-b from-white/90 via-gray-100 to-gray-200 min-h-screen pb-12"
-        >
+        className="w-full bg-gradient-to-b from-white/90 via-gray-100 to-gray-200 pb-8 md:min-h-screen md:pb-3"
+      >
         <div className="relative w-full">
           <Image
             src="/img/15 (1).webp"
             alt="hero"
             width={1920}
             height={1080}
-            className="w-full h-auto object-cover mb-10"
+            className="w-full h-auto object-cover mb-6 md:mb-10 grayscale"
             priority
           />
-
-          <div className="absolute inset-0 bg-black/50" />
         </div>
 
         <div className="text-center max-w-5xl px-6 mx-auto z-10">
           <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-black bg-clip-text text-transparent font-['Playfair_Display']">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 md:mb-6 bg-black bg-clip-text text-transparent font-['Playfair_Display']">
               Rendy Wicaksana
             </h1>
-            <p className="text-base md:text-2xl text-black/60 mb-4 leading-relaxed font-['Source_Sans_3']">
+            <p className="text-base md:text-2xl text-black/60 mb-3 md:mb-4 leading-relaxed font-['Source_Sans_3']">
               Video Journalist | Multimedia Journalist | Producer
             </p>
-            <div 
-              className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12"
-            >
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto mb-8">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
                   <div className="text-3xl md:text-4xl font-bold bg-black/70 bg-clip-text text-transparent mb-2">{stat.number}</div>
@@ -208,40 +204,26 @@ const RendyPortfolio = () => {
           </div>
 
           <div 
-              data-aos="fade-up"
-              data-aos-delay="100"
-              data-aos-anchor-placement="top-bottom"
-              className="flex md:flex-wrap justify-center md:justify-center items-center gap-x-3 md:gap-x-6 gap-y-4 mb-4 overflow-x-auto md:overflow-x-visible pb-2"
-            >
+            data-aos="fade-up"
+            data-aos-delay="100"
+            data-aos-anchor-placement="top-bottom"
+            className="flex md:flex-wrap justify-center md:justify-center items-center gap-x-3 md:gap-x-6 gap-y-4 mb-4 overflow-x-auto md:overflow-x-visible pb-2"
+          >
             {awards.map((logo, idx) => (
-              <div key={idx} className="flex items-center justify-center p-2 h-20 md:h-28 min-w-[120px] md:w-[180px] flex-shrink-0">
+              <div key={idx} className="flex items-center justify-center p-2 h-16 md:h-28 min-w-[110px] md:w-[180px] flex-shrink-0">
                 <Image
                   src={logo.src}
                   alt={`Logo ${idx + 1}`}
                   width={180}
                   height={90}
-                  className={`object-contain max-h-16 md:max-h-24 w-full`}
+                  className="object-contain max-h-14 md:max-h-24 w-full"
                 />
               </div>
             ))}
-
-            {/* {logos.map((logo, idx) => (
-              <div key={idx} className="flex justify-center">
-                <Image
-                  src={logo.src}
-                  alt={`Logo ${idx + 1}`}
-                  width={100}
-                  height={60}
-                  className={`object-contain max-h-12 w-auto ${
-                    logo.name === 'scmp' ? 'scale-125' : ''
-                  }`}
-                />
-              </div>
-            ))} */}
           </div>
 
           <div className="animate-bounce">
-            <ChevronDown className="mx-auto w-8 h-8 text-black" />
+            <ChevronDown className="mx-auto w-6 h-6 md:w-8 md:h-8 text-black" />
           </div>
         </div>
       </section>
@@ -314,18 +296,18 @@ const RendyPortfolio = () => {
       >
         <h2 className="text-center text-4xl md:text-4xl font-bold mb-6 font-semibold mb-6">Worked With</h2>
 
-        <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-4">
+        <div className="flex flex-wrap justify-center items-center gap-x-3 gap-y-6">
           {logos.map((logo, idx) => (
             <div
               key={idx}
-              className="flex justify-center items-center w-[120px] md:w-[140px] h-20"
+              className="flex justify-center items-center w-[160px] md:w-[180px] h-24 md:h-28"
             >
               <Image
                 src={logo.src}
                 alt={`Logo ${idx + 1}`}
                 width={300}
                 height={100}
-                className={`object-contain max-h-12 w-auto filter invert ${
+                className={`object-contain max-h-16 md:max-h-20 w-auto filter invert ${
                   logo.name === 'scmp' ? 'scale-125' : ''
                 }`}
               />
@@ -333,8 +315,6 @@ const RendyPortfolio = () => {
           ))}
         </div>
       </section>
-
-
 
       {/* Portfolio Section */}
       <section 
@@ -381,98 +361,137 @@ const RendyPortfolio = () => {
 
           {/* Portfolio Grid */}
           <div ref={scrollRef}>
-              <AnimatePresence>
-                <motion.div
-                  key={`${activeFilter}-${currentPage}`}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -30 }}
-                  transition={{ duration: 0.4 }}
-                  className="grid lg:grid-cols-3 gap-6 sm:gap-8"
-                >
-                  {paginatedProjects.map((project) => (
-                    <div
-                      key={project.id}
-                      className="group bg-white/85 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-                    >
-                      <div className="relative overflow-hidden">
-                        <Image
-                          src={getProjectThumbnail(project)}
-                          alt={project.title}
-                          width={600}
-                          height={200}
-                          className="w-full h-48 object-cover"
-                          unoptimized
-                        />
-                        <div className="absolute inset-0 bg-black/10 group-hover:bg-white/10 transition-all duration-300" />
-                        <div className="absolute top-4 left-4">
-                          <span className="bg-white/80 text-black px-3 py-1 rounded-full text-sm font-medium">
-                            {project.year}
-                          </span>
-                        </div>
-                        <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          {project.videoUrl && (
-                            <a
-                              href={project.videoUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center justify-center bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100 transition-colors shadow-md"
-                            >
-                              <ExternalLink className="w-4 h-4" />
-                            </a>
-                          )}
-                        </div>
+            <AnimatePresence>
+              <motion.div
+                key={`${activeFilter}-${currentPage}`}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -30 }}
+                transition={{ duration: 0.4 }}
+                className="grid lg:grid-cols-3 gap-8 sm:gap-10"
+              >
+                {paginatedProjects.map((project) => (
+                  <div
+                    key={project.id}
+                    className="group bg-white/90 backdrop-blur-sm rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02] cursor-pointer md:cursor-default border border-gray-100/50"
+                    onClick={() => {
+                      // Handle mobile click - only on mobile screens
+                      if (window.innerWidth < 768 && project.videoUrl) {
+                        window.open(project.videoUrl, '_blank', 'noopener,noreferrer');
+                      }
+                    }}
+                  >
+                    <div className="relative overflow-hidden">
+                      {/* Image with enhanced overlay */}
+                      <Image
+                        src={getProjectThumbnail(project)}
+                        alt={project.title}
+                        width={600}
+                        height={200}
+                        className="w-full h-52 object-cover transition-transform duration-700 group-hover:scale-110"
+                        unoptimized
+                      />
+                      
+                      {/* Gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent group-hover:from-black/30 transition-all duration-500" />
+                      
+                      {/* Year badge with enhanced styling */}
+                      <div className="absolute top-5 left-5">
+                        <span className="bg-white/95 backdrop-blur-sm text-gray-800 px-4 py-2 rounded-full text-sm font-semibold shadow-lg border border-white/20">
+                          {project.year}
+                        </span>
                       </div>
+                      
+                      {/* External link button with enhanced design */}
+                      <div className="absolute bottom-5 right-5 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 transform md:translate-y-2 md:group-hover:translate-y-0">
+                        {project.videoUrl && (
+                          <a
+                            href={project.videoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center bg-white/95 backdrop-blur-sm text-gray-700 p-3 rounded-full hover:bg-white hover:text-gray-900 transition-all duration-300 shadow-lg border border-white/20 hover:scale-110"
+                            onClick={(e) => {
+                              // Prevent card click on desktop when clicking the button
+                              if (window.innerWidth >= 768) {
+                                e.stopPropagation();
+                              }
+                            }}
+                          >
+                            <ExternalLink className="w-5 h-5" />
+                          </a>
+                        )}
+                      </div>
+                      
+                      {/* Subtle play icon overlay for mobile */}
+                      {project.videoUrl && (
+                        <div className="md:hidden absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
+                            <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M8 5v14l11-7z"/>
+                            </svg>
+                          </div>
+                        </div>
+                      )}
+                    </div>
 
-                      <div className="p-6">
-                        <div className="mb-3">
-                          <h4 className="text-lg md:text-base font-bold text-gray-800 group-hover:transition-colors mb-3">
-                            {project.title}
-                          </h4>
-                          <span className="text-xs md:text-sm text-gray-500 font-medium mt-1 block">
+                    <div className="p-7">
+                      {/* Title and Platform */}
+                      <div className="mb-4">
+                        <h4 className="text-xl md:text-lg font-bold text-gray-900 mb-2 leading-tight group-hover:text-gray-700 transition-colors duration-300">
+                          {project.title}
+                        </h4>
+                        <div className="flex items-center">
+                          <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-2"></div>
+                          <span className="text-sm md:text-sm text-gray-600 font-medium">
                             {project.platform}
                           </span>
                         </div>
+                      </div>
 
-                        <p className="text-sm md:text-base text-gray-600 mb-4 leading-relaxed">
-                          {project.description}
-                        </p>
+                      {/* Description */}
+                      <p className="text-gray-700 mb-5 leading-relaxed text-sm md:text-base line-clamp-3">
+                        {project.description}
+                      </p>
 
-                        <div className="flex flex-wrap gap-2">
-                          {project.tags.map((tag, i) => (
-                            <span
-                              key={i}
-                              className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-[10px] md:text-xs"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
+                      {/* Tags with enhanced styling */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.tags.map((tag, i) => (
+                          <span
+                            key={i}
+                            className="bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 px-3 py-1.5 rounded-full text-xs font-medium border border-gray-200/50 hover:from-gray-100 hover:to-gray-200 transition-all duration-300"
+                          >
+                            {tag}
+                          </span>
+                        ))}
                       </div>
                     </div>
-                  ))}
-                </motion.div>
-              </AnimatePresence>
+                  </div>
+                ))}
+              </motion.div>
+            </AnimatePresence>
 
-              {/* Pagination */}
-              {totalPages > 1 && (
-                <div className="flex justify-center mt-10 space-x-2">
+            {/* Enhanced Pagination */}
+            {totalPages > 1 && (
+              <div className="flex justify-center mt-12">
+                <div className="flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full p-2 shadow-lg border border-gray-200/50">
                   {Array.from({ length: totalPages }, (_, i) => (
                     <button
                       key={i}
                       onClick={() => setCurrentPage(i + 1)}
-                      className={`px-4 py-2 rounded-full border text-sm transition-all ${
+                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                         currentPage === i + 1
-                          ? "bg-gradient-to-r from-gray-600 via-gray-500 to-gray-700text-white border-gray-500"
-                          : "bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
+                          ? "bg-gradient-to-r from-gray-700 via-gray-600 to-gray-800 text-white shadow-md transform scale-105"
+                          : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                       }`}
                     >
                       {i + 1}
                     </button>
                   ))}
                 </div>
-              )}
-          </div>              
+              </div>
+            )}
+          </div>          
+
         </div>
       </section>
 
