@@ -50,10 +50,15 @@ const RendyPortfolio = () => {
 
   const logos = [
     { name: "vice", src: "/img/vice.webp" },
-    { name: "scmp", src: "/img/SCMP_new.webp" },
-    { name: "abc", src: "/img/ABC.webp" },
-    { name: "voa", src: "/img/VOA.webp" },
+    { name: "scmp", src: "/img/SCMP_mod.webp" },
+    { name: "abc", src: "/img/ABC_mod.webp" },
+    { name: "voa", src: "/img/VOA_mod.webp" },
   ];
+
+  const awards = [
+    { name: "Peabody", src: "/img/peabody.webp" },
+    { name: "GLAAD", src: "/img/glaad.webp" },
+  ]
 
 
   const filteredProjects = activeFilter === 'all'
@@ -126,11 +131,6 @@ const RendyPortfolio = () => {
     setCurrentPage(1);
   }, [activeFilter]);
 
-  // useEffect(() => {
-  //   if (scrollRef.current) {
-  //     scrollRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-  //   }
-  // }, [currentPage]);
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
@@ -211,9 +211,21 @@ const RendyPortfolio = () => {
               data-aos="fade-up"
               data-aos-delay="100"
               data-aos-anchor-placement="top-bottom"
-              className="grid grid-cols-2 sm:grid-cols-4 gap-4 items-center justify-center mb-8"
+              className="flex md:flex-wrap justify-center md:justify-center items-center gap-x-3 md:gap-x-6 gap-y-4 mb-4 overflow-x-auto md:overflow-x-visible pb-2"
             >
-            {logos.map((logo, idx) => (
+            {awards.map((logo, idx) => (
+              <div key={idx} className="flex items-center justify-center p-2 h-20 md:h-28 min-w-[120px] md:w-[180px] flex-shrink-0">
+                <Image
+                  src={logo.src}
+                  alt={`Logo ${idx + 1}`}
+                  width={180}
+                  height={90}
+                  className={`object-contain max-h-16 md:max-h-24 w-full`}
+                />
+              </div>
+            ))}
+
+            {/* {logos.map((logo, idx) => (
               <div key={idx} className="flex justify-center">
                 <Image
                   src={logo.src}
@@ -225,7 +237,7 @@ const RendyPortfolio = () => {
                   }`}
                 />
               </div>
-            ))}
+            ))} */}
           </div>
 
           <div className="animate-bounce">
@@ -259,7 +271,7 @@ const RendyPortfolio = () => {
                         key={idx}
                         src={src}
                         alt={`Photo ${idx + 1}`}
-                        className="w-full rounded-lg break-inside-avoid"
+                        className="w-full rounded-lg break-inside-avoid grayscale"
                       />
                     ))}
                   </div>
@@ -272,9 +284,6 @@ const RendyPortfolio = () => {
               data-aos-anchor-placement="top-bottom"
               className="flex flex-col justify-center px-6 md:px-16 max-w-[680px] mx-auto mt-4 text-white text-base leading-relaxed"
             >
-              {/* <h3 className="text-3xl font-bold mb-6 text-gray-800">
-                Storytelling That Transcends Borders
-              </h3> */}
               <p className="text-lg text-white/80 mb-6 leading-relaxed font-['Merriweather']">
                 With 11 years of experience in multimedia journalism, I specialize in creating compelling
                 visual narratives that resonate with both Indonesian and international audiences. My work
@@ -290,23 +299,42 @@ const RendyPortfolio = () => {
                 reflecting my commitment to authentic storytelling that drives social impact.
               </p>
 
-              <div className="grid grid-cols-2 gap-4 items-center mt-4">
-                <img
-                  src="/img/peabody.webp"
-                  alt="Peabody Award"
-                  className="w-full max-w-[200px] h-auto object-contain mx-auto filter invert"
-                />
-                <img
-                  src="/img/glaad.webp"
-                  alt="GLAAD Award"
-                  className="w-full max-w-[200px] h-auto object-contain mx-auto filter invert"
-                />
-              </div>
-
             </div>
           </div>
         </div>
       </section>
+
+      {/* Worked With */}
+      <section
+        id="worked"
+        className="flex flex-col items-center justify-center mb-10"
+        data-aos="fade-up"
+        data-aos-delay="100"
+        data-aos-anchor-placement="top-bottom"
+      >
+        <h2 className="text-center text-4xl md:text-4xl font-bold mb-6 font-semibold mb-6">Worked With</h2>
+
+        <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-4">
+          {logos.map((logo, idx) => (
+            <div
+              key={idx}
+              className="flex justify-center items-center w-[120px] md:w-[140px] h-20"
+            >
+              <Image
+                src={logo.src}
+                alt={`Logo ${idx + 1}`}
+                width={300}
+                height={100}
+                className={`object-contain max-h-12 w-auto filter invert ${
+                  logo.name === 'scmp' ? 'scale-125' : ''
+                }`}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
+
 
       {/* Portfolio Section */}
       <section 
