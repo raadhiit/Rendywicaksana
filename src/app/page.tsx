@@ -497,29 +497,35 @@ const RendyPortfolio = () => {
 
       {/* Expertise Section */}
       <section 
-          id="expertise" 
-          data-aos="fade-up"
-          data-aos-delay="100"
-          data-aos-anchor-placement="top-bottom"
-          className="relative z-10 py-20 px-6 bg-white/85"
-        >
+        id="expertise" 
+        data-aos="fade-up"
+        data-aos-delay="100"
+        data-aos-anchor-placement="top-bottom"
+        className="relative z-10 py-20 px-4 bg-white/85"
+      >
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-black">My Expertise</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-black">
+              My Expertise
+            </h2>
+            <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
               Core competencies that drive impactful journalism and storytelling
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {expertise.map((item, index) => (
-              <div key={index} className="group text-center">
-                <div className="bg-white/80 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                  <div className="flex items-center justify-center w-16 h-16 bg-gray-600 rounded-full mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
-                    <item.icon className="w-8 h-8 text-white" />
+              <div key={index} className="flex flex-col text-center h-full">
+                <div className="group bg-white/90 rounded-2xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col flex-grow">
+                  <div className="flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-gray-700 rounded-full mb-4 md:mb-6 mx-auto transition-transform duration-300 group-hover:scale-110">
+                    <item.icon className="w-6 h-6 md:w-8 md:h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-4">{item.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
+                  <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-800 mb-2 md:mb-4">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
               </div>
             ))}
@@ -586,10 +592,15 @@ const RendyPortfolio = () => {
               </button>
             </a>
 
-            <button className="border border-gray-400 text-gray-300 px-8 py-4 rounded-full hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+            <a
+              href="/pdf/cv_updated_enhance_Rendy_April2025.pdf"
+              download
+              className="border border-gray-400 text-gray-300 px-8 py-4 rounded-full hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
+            >
               <Download className="w-5 h-5 mr-2" />
               Download Resume
-            </button>
+            </a>
+
           </div>
         </div>
       </section>
